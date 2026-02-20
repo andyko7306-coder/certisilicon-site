@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CertiSilicon | Rayon KA100</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color:#0A0A0A;
+    color:white;
+    line-height:1.6;
+}
+nav {
+    position:fixed;
+    width:100%;
+    top:0;
+    background:rgba(0,0,0,0.9);
+    padding:18px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+}
+nav a {
+    color:#00BFFF;
+    text-decoration:none;
+    margin-left:25px;
+    font-weight:600;
+}
+.hero {
+    height:100vh;
+    background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+        url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1920&q=80')
+        center/cover no-repeat;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+.hero h1 {
+    font-size:72px;
+    font-weight:800;
+}
+.hero p {
+    margin-top:20px;
+    font-size:22px;
+    max-width:800px;
+    opacity:0.9;
+}
+.button {
+    margin-top:35px;
+    padding:16px 34px;
+    background:#00BFFF;
+    color:black;
+    font-weight:700;
+    text-decoration:none;
+    border-radius:8px;
+}
+section {
+    padding:110px 50px;
+    max-width:1200px;
+    margin:auto;
+}
+.section-title {
+    font-size:40px;
+    color:#00BFFF;
+    margin-bottom:40px;
+}
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:35px;
+}
+.card {
+    background:#111;
+    padding:35px;
+    border-radius:14px;
+    transition:0.3s;
+}
+.card:hover {
+    transform:translateY(-8px);
+    background:#151515;
+}
+.card img {
+    width:100%;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+table {
+    width:100%;
+    border-collapse:collapse;
+    margin-top:25px;
+}
+th, td {
+    padding:16px;
+    border:1px solid #333;
+}
+th {
+    background:#111;
+}
+footer {
+    background:#111;
+    text-align:center;
+    padding:50px;
+    margin-top:80px;
+    font-size:14px;
+    opacity:0.8;
+}
+</style>
+</head>
+<body>
+
+<nav>
+    <div><strong>CertiSilicon</strong></div>
+    <div>
+        <a href="#product">Product</a>
+        <a href="#technology">Technology</a>
+        <a href="#specs">Specs</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<div class="hero">
+    <h1>Rayon KA100</h1>
+    <p>Korea-Optimized AI GPU Platform. Built to Compete. Built to Scale.</p>
+    <a href="#contact" class="button">Contact Sales</a>
+</div>
+
+<section id="product">
+    <div class="section-title">Product Overview</div>
+    <div class="grid">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?auto=format&fit=crop&w=900&q=80">
+            <h3>AI Acceleration Architecture</h3>
+            <p>High-performance FP16 / INT8 compute engine designed for AI training and inference workloads.</p>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=900&q=80">
+            <h3>Data Center Deployment</h3>
+            <p>Optimized for Korean power density standards, rack integration, and scalable AI clusters.</p>
+        </div>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80">
+            <h3>Multi-Board Scalability</h3>
+            <p>Up to 4-board architecture enabling high-density AI infrastructure growth.</p>
+        </div>
+    </div>
+</section>
+
+<section id="technology">
+    <div class="section-title">Technology</div>
+    <p>
+    Rayon KA100 integrates high-bandwidth memory architecture, efficient power design,
+    and AI framework compatibility to deliver a scalable Korean AI GPU platform.
+    Built for data centers. Built for growth.
+    </p>
+</section>
+
+<section id="specs">
+    <div class="section-title">Technical Specifications</div>
+    <table>
+        <tr><th>Category</th><th>Rayon KA100</th></tr>
+        <tr><td>AI Compute</td><td>FP16 / INT8 Optimized</td></tr>
+        <tr><td>Memory</td><td>High Bandwidth Memory</td></tr>
+        <tr><td>Scalability</td><td>Up to 4 Boards</td></tr>
+        <tr><td>Deployment</td><td>Data Center / Cloud / Edge</td></tr>
+    </table>
+</section>
+
+<section id="contact">
+    <div class="section-title">Contact</div>
+    <p>Email: sales@certisilicon.com</p>
+    <p>Location: Seoul, Republic of Korea</p>
+</section>
+
+<footer>
+    © 2026 CertiSilicon. All Rights Reserved.
+</footer>
+
+</body>
+</html>
