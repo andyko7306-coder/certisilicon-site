@@ -100,6 +100,76 @@ footer { background:#111; padding:60px; text-align:center; margin-top:100px; }
   display:block;
 }
 
+
+/* ===============================
+   Responsive Design (Mobile)
+================================= */
+
+@media (max-width: 1024px) {
+    .grid-3 {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    nav {
+        padding: 15px 20px !important;
+    }
+
+    .nav-right {
+        gap: 15px !important;
+        flex-wrap: wrap;
+        font-size: 14px;
+    }
+
+    section {
+        padding: 80px 20px !important;
+    }
+
+    h1 {
+        font-size: 38px !important;
+    }
+
+    h2 {
+        font-size: 32px !important;
+    }
+
+    p {
+        font-size: 18px !important;
+    }
+
+    .grid-3 {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+
+    .card-img img {
+        height: 320px !important;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    h1 {
+        font-size: 30px !important;
+    }
+
+    h2 {
+        font-size: 26px !important;
+    }
+
+    p {
+        font-size: 16px !important;
+    }
+
+    .card-img img {
+        height: 260px !important;
+    }
+
+}
+
 </style>
 </head>
 
