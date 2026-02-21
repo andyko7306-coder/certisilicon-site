@@ -170,6 +170,36 @@ footer { background:#111; padding:60px; text-align:center; margin-top:100px; }
 
 }
 
+#contact {
+  text-align:center;
+  padding:140px 20px;
+  background:linear-gradient(180deg,#0A0A0A,#111);
+}
+
+#contact h2 {
+  font-size:48px;
+  margin-bottom:30px;
+}
+
+.contact-box {
+  display:inline-block;
+  background:#111;
+  padding:40px 60px;
+  border-radius:20px;
+  box-shadow:0 0 40px rgba(0,191,255,0.15);
+}
+
+.contact-box p {
+  font-size:20px;
+  color:#aaa;
+}
+
+.contact-box strong {
+  font-size:26px;
+  color:#00BFFF;
+}
+
+
 </style>
 
 <style>
@@ -287,23 +317,92 @@ document.addEventListener("DOMContentLoaded", function () {
 #dynamic-title, #dynamic-sub {
     transition: opacity 0.7s ease-in-out;
 }
+/* NAV 기본 스타일 */
+.navbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  background:#000;
+  position:relative;
+}
+
+.navbar .logo {
+  font-size:20px;
+  font-weight:bold;
+  color:#00BFFF;
+  text-decoration:none;
+}
+
+.nav-links {
+  display:flex;
+  gap:25px;
+}
+
+.nav-links a {
+  text-decoration:none;
+  color:#00BFFF;
+  font-size:15px;
+}
+
+/* 햄버거 버튼 */
+.menu-toggle {
+  display:none;
+  font-size:26px;
+  color:#00BFFF;
+  cursor:pointer;
+}
+
+/* 모바일 대응 */
+@media(max-width:768px){
+
+  .menu-toggle {
+    display:block;
+  }
+
+  .nav-links {
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:70px;
+    right:0;
+    width:100%;
+    background:#0a0a0a;
+    padding:30px 0;
+    text-align:center;
+  }
+
+  .nav-links a {
+    padding:12px 0;
+    font-size:18px;
+  }
+
+  .nav-links.active {
+    display:flex;
+  }
+}
 </style>
 
 </head>
 
 <body>
 
+<nav class="navbar">
+  <a href="index.html" class="logo">CertiSilicon</a>
 
-<nav>
-  <div class="logo">CertiSilicon</div>
-  <div class="menu">
+  <!-- 햄버거 버튼 -->
+  <div class="menu-toggle" id="mobile-menu">
+    ☰
+  </div>
 
+  <!-- 메뉴 링크 -->
+  <div class="nav-links" id="nav-links">
     <a href="#investor">Investor Overview</a>
     <a href="#ecosystem">Global AI Compute Ecosystem</a>
     <a href="#roadmap">Technology Roadmap</a>
     <a href="#partners">Global Partners</a>
     <a href="press.html">Media & Press</a>
-
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -488,7 +587,14 @@ deployment stability, and long-term operational sustainability.
   </div>
 </section>
 
+<script>
+  const menu = document.getElementById("mobile-menu");
+  const navLinks = document.getElementById("nav-links");
 
+  menu.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+  });
+</script>
 
 
 </body>
@@ -583,6 +689,7 @@ deployment stability, and long-term operational sustainability.
 
 <section id="contact">
 <h2>Contact</h2>
+ <div class="contact-box">
 <p>Email: sales@certisilicon.com</p>
 <p>Seoul, Republic of Korea</p>
 </section>
