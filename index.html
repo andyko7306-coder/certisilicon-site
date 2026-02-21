@@ -381,21 +381,137 @@ document.addEventListener("DOMContentLoaded", function () {
     display:flex;
   }
 }
+/* ===== Premium Navigation ===== */
+
+.navbar {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 40px;
+  background:rgba(0,0,0,0.8);
+  backdrop-filter:blur(12px);
+  position:fixed;
+  width:100%;
+  top:0;
+  z-index:999;
+}
+
+.logo {
+  font-size:20px;
+  font-weight:bold;
+  color:#00BFFF;
+  text-decoration:none;
+}
+
+.nav-links {
+  display:flex;
+  gap:25px;
+  transition:all 0.4s ease;
+}
+
+.nav-links a {
+  color:#00BFFF;
+  text-decoration:none;
+  font-size:15px;
+  transition:0.3s;
+}
+
+.nav-links a:hover {
+  color:white;
+}
+
+/* 햄버거 버튼 */
+.menu-toggle {
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+  gap:6px;
+}
+
+.menu-toggle span {
+  width:28px;
+  height:3px;
+  background:#00BFFF;
+  transition:0.4s;
+}
+
+/* 햄버거 → X 애니메이션 */
+.menu-toggle.active span:nth-child(1) {
+  transform:rotate(45deg) translate(5px,5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity:0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform:rotate(-45deg) translate(6px,-6px);
+}
+
+/* 모바일 */
+@media(max-width:768px){
+
+  .menu-toggle {
+    display:flex;
+  }
+
+  .nav-links {
+    position:absolute;
+    top:70px;
+    right:0;
+    width:100%;
+    background:rgba(0,0,0,0.95);
+    backdrop-filter:blur(15px);
+    flex-direction:column;
+    align-items:center;
+    padding:40px 0;
+    transform:translateY(-120%);
+    opacity:0;
+  }
+
+  .nav-links.active {
+    transform:translateY(0);
+    opacity:1;
+  }
+
+  .nav-links a {
+    font-size:20px;
+    padding:12px 0;
+  }
+}
+
 </style>
 
 </head>
+<script>
+  const menu = document.getElementById("mobile-menu");
+  const navLinks = document.getElementById("nav-links");
+
+  menu.addEventListener("click", () => {
+    menu.classList.toggle("active");
+    navLinks.classList.toggle("active");
+  });
+
+  // 메뉴 클릭 시 자동 닫힘
+  document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+      menu.classList.remove("active");
+      navLinks.classList.remove("active");
+    });
+  });
+</script>
 
 <body>
 
 <nav class="navbar">
   <a href="index.html" class="logo">CertiSilicon</a>
 
-  <!-- 햄버거 버튼 -->
   <div class="menu-toggle" id="mobile-menu">
-    ☰
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 
-  <!-- 메뉴 링크 -->
   <div class="nav-links" id="nav-links">
     <a href="#investor">Investor Overview</a>
     <a href="#ecosystem">Global AI Compute Ecosystem</a>
