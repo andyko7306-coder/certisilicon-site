@@ -170,36 +170,6 @@ footer { background:#111; padding:60px; text-align:center; margin-top:100px; }
 
 }
 
-#contact {
-  text-align:center;
-  padding:140px 20px;
-  background:linear-gradient(180deg,#0A0A0A,#111);
-}
-
-#contact h2 {
-  font-size:48px;
-  margin-bottom:30px;
-}
-
-.contact-box {
-  display:inline-block;
-  background:#111;
-  padding:40px 60px;
-  border-radius:20px;
-  box-shadow:0 0 40px rgba(0,191,255,0.15);
-}
-
-.contact-box p {
-  font-size:20px;
-  color:#aaa;
-}
-
-.contact-box strong {
-  font-size:26px;
-  color:#00BFFF;
-}
-
-
 </style>
 
 <style>
@@ -317,69 +287,19 @@ document.addEventListener("DOMContentLoaded", function () {
 #dynamic-title, #dynamic-sub {
     transition: opacity 0.7s ease-in-out;
 }
-/* NAV 기본 스타일 */
-.navbar {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 40px;
-  background:#000;
-  position:relative;
+</style>
+
+
+<style>
+.card {
+    transition: all 0.35s ease;
 }
 
-.navbar .logo {
-  font-size:20px;
-  font-weight:bold;
-  color:#00BFFF;
-  text-decoration:none;
-}
-
-.nav-links {
-  display:flex;
-  gap:25px;
-}
-
-.nav-links a {
-  text-decoration:none;
-  color:#00BFFF;
-  font-size:15px;
-}
-
-/* 햄버거 버튼 */
-.menu-toggle {
-  display:none;
-  font-size:26px;
-  color:#00BFFF;
-  cursor:pointer;
-}
-
-/* 모바일 대응 */
-@media(max-width:768px){
-
-  .menu-toggle {
-    display:block;
-  }
-
-  .nav-links {
-    display:none;
-    flex-direction:column;
-    position:absolute;
-    top:70px;
-    right:0;
-    width:100%;
-    background:#0a0a0a;
-    padding:30px 0;
-    text-align:center;
-  }
-
-  .nav-links a {
-    padding:12px 0;
-    font-size:18px;
-  }
-
-  .nav-links.active {
-    display:flex;
-  }
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,191,255,0.35);
+    border: 1px solid rgba(0,191,255,0.4);
+    cursor: pointer;
 }
 </style>
 
@@ -387,22 +307,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <body>
 
-<nav class="navbar">
-  <a href="index.html" class="logo">CertiSilicon</a>
 
-  <!-- 햄버거 버튼 -->
-  <div class="menu-toggle" id="mobile-menu">
-    ☰
-  </div>
+<nav>
+  <div class="logo">CertiSilicon</div>
+  <div class="menu">
 
-  <!-- 메뉴 링크 -->
-  <div class="nav-links" id="nav-links">
     <a href="#investor">Investor Overview</a>
     <a href="#ecosystem">Global AI Compute Ecosystem</a>
     <a href="#roadmap">Technology Roadmap</a>
     <a href="#partners">Global Partners</a>
     <a href="press.html">Media & Press</a>
-    <a href="#contact">Contact</a>
+
   </div>
 </nav>
 
@@ -587,15 +502,29 @@ deployment stability, and long-term operational sustainability.
   </div>
 </section>
 
+
+
+
+
 <script>
-  const menu = document.getElementById("mobile-menu");
-  const navLinks = document.getElementById("nav-links");
+document.addEventListener("DOMContentLoaded", function() {
+    const cards = document.querySelectorAll(".card");
 
-  menu.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
-  });
+    cards.forEach(card => {
+        if (card.innerText.includes("MetaX")) {
+            card.addEventListener("click", function() {
+                window.open("https://www.metax-tech.com", "_blank");
+            });
+        }
+
+        if (card.innerText.includes("YLcloud")) {
+            card.addEventListener("click", function() {
+                window.open("http://www.you-cloud.com", "_blank");
+            });
+        }
+    });
+});
 </script>
-
 
 </body>
 </html>
@@ -611,33 +540,38 @@ deployment stability, and long-term operational sustainability.
 
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:60px;">
 
-      <div style="background:#111; border-radius:20px; padding:50px 40px;
-                  box-shadow:0 0 40px rgba(0,191,255,0.15); transition:0.4s;">
-        <h3 style="font-size:26px; margin-bottom:15px;">MetaX</h3>
-        <p style="color:#00BFFF; margin-bottom:20px;">
-          GPU Architecture Collaboration Partner
-        </p>
-        <p style="color:#ccc; line-height:1.8;">
-          Advanced GPU technology collaboration enabling scalable AI acceleration 
-          and high-performance compute platform integration.
-        </p>
-      </div>
+      <!-- MetaX -->
+      <a href="https://www.metax-tech.com" target="_blank" class="eco-box">
+        <div>
+          <h3 style="font-size:26px; margin-bottom:15px;">MetaX</h3>
+          <p style="color:#00BFFF; margin-bottom:20px;">
+            GPU Architecture Collaboration Partner
+          </p>
+          <p style="color:#ccc; line-height:1.8;">
+            Advanced GPU technology collaboration enabling scalable AI acceleration 
+            and high-performance compute platform integration.
+          </p>
+        </div>
+      </a>
 
-      <div style="background:#111; border-radius:20px; padding:50px 40px;
-                  box-shadow:0 0 40px rgba(0,191,255,0.15); transition:0.4s;">
-        <h3 style="font-size:26px; margin-bottom:15px;">YLcloud</h3>
-        <p style="color:#00BFFF; margin-bottom:20px;">
-          Regional Enablement & Manufacturing Alliance Partner
-        </p>
-        <p style="color:#ccc; line-height:1.8;">
-          Strategic supply chain coordination and regional manufacturing enablement 
-          supporting large-scale AI infrastructure deployment.
-        </p>
-      </div>
+      <!-- YLcloud -->
+      <a href="http://www.you-cloud.cn" target="_blank" class="eco-box">
+        <div>
+          <h3 style="font-size:26px; margin-bottom:15px;">YLcloud</h3>
+          <p style="color:#00BFFF; margin-bottom:20px;">
+            Regional Enablement & Manufacturing Alliance Partner
+          </p>
+          <p style="color:#ccc; line-height:1.8;">
+            Strategic supply chain coordination and regional manufacturing enablement 
+            supporting large-scale AI infrastructure deployment.
+          </p>
+        </div>
+      </a>
 
     </div>
   </div>
 </section>
+
 
 
 <section id="roadmap" style="background:#080808; padding:140px 60px;">
@@ -679,6 +613,23 @@ deployment stability, and long-term operational sustainability.
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+.eco-box {
+  display:block;
+  background:#111;
+  border-radius:20px;
+  padding:50px 40px;
+  box-shadow:0 0 40px rgba(0,191,255,0.15);
+  text-decoration:none;
+  color:inherit;
+  transition:all 0.4s ease;
+}
+
+.eco-box:hover {
+  transform:translateY(-10px);
+  box-shadow:0 25px 60px rgba(0,191,255,0.4);
+  border:1px solid rgba(0,191,255,0.4);
+  cursor:pointer;
+}
 </style>
 
 
@@ -689,7 +640,6 @@ deployment stability, and long-term operational sustainability.
 
 <section id="contact">
 <h2>Contact</h2>
- <div class="contact-box">
 <p>Email: sales@certisilicon.com</p>
 <p>Seoul, Republic of Korea</p>
 </section>
