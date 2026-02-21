@@ -343,23 +343,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:60px;">
 
-      <!-- Sejong GPU Research Lab Card -->
-      <div style="background:#111; border-radius:20px; padding:50px 40px; 
-                  box-shadow:0 0 40px rgba(0,191,255,0.15); 
-                  transition:0.4s;">
-        <div style="height:120px; width:120px; margin:auto; border-radius:50%;
-                    background:linear-gradient(135deg,#00BFFF,#005f99);
-                    display:flex; align-items:center; justify-content:center;
-                    font-size:40px;">🧠</div>
-        <h3 style="margin-top:30px; font-size:28px;">Sejong GPU Research Lab</h3>
-        <h4 style="color:#00BFFF; margin:15px 0 25px 0;">Deep Architecture & Core Hardware Innovation</h4>
-        <ul style="line-height:2; font-size:18px; color:#ddd; text-align:left;">
-          <li>GPU Microarchitecture R&D</li>
-          <li>AI Accelerator Core Design</li>
-          <li>Parallel Processing Optimization</li>
-          <li>Next-Generation Compute Research</li>
-        </ul>
-      </div>
+<!-- Sejong GPU Research Lab Card -->
+<a href="https://gpu.sejong.ac.kr" target="_blank" class="team-box">
+  <div>
+    <div style="height:120px; width:120px; margin:auto; border-radius:50%;
+                background:linear-gradient(135deg,#00BFFF,#005f99);
+                display:flex; align-items:center; justify-content:center;
+                font-size:40px;">🧠</div>
+
+    <h3 style="margin-top:30px; font-size:28px;">Sejong GPU Research Lab</h3>
+
+    <h4 style="color:#00BFFF; margin:15px 0 25px 0;">
+      Deep Architecture & Core Hardware Innovation
+    </h4>
+
+    <ul style="line-height:2; font-size:18px; color:#ddd; text-align:left;">
+      <li>GPU Microarchitecture R&D</li>
+      <li>AI Accelerator Core Design</li>
+      <li>Parallel Processing Optimization</li>
+      <li>Next-Generation Compute Research</li>
+    </ul>
+  </div>
+</a>
 
       <!-- CertiSilicon Card -->
       <div style="background:#111; border-radius:20px; padding:50px 40px; 
@@ -625,6 +630,23 @@ document.addEventListener("DOMContentLoaded", function() {
 }
 
 .eco-box:hover {
+  transform:translateY(-10px);
+  box-shadow:0 25px 60px rgba(0,191,255,0.4);
+  border:1px solid rgba(0,191,255,0.4);
+  cursor:pointer;
+}
+.team-box {
+  display:block;
+  background:#111;
+  border-radius:20px;
+  padding:50px 40px;
+  box-shadow:0 0 40px rgba(0,191,255,0.15);
+  text-decoration:none;
+  color:inherit;
+  transition:all 0.4s ease;
+}
+
+.team-box:hover {
   transform:translateY(-10px);
   box-shadow:0 25px 60px rgba(0,191,255,0.4);
   border:1px solid rgba(0,191,255,0.4);
