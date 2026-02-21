@@ -301,6 +301,58 @@ document.addEventListener("DOMContentLoaded", function () {
     border: 1px solid rgba(0,191,255,0.4);
     cursor: pointer;
 }
+nav {
+  position: fixed;
+  width: 100%;
+  background: rgba(0,0,0,0.95);
+  padding: 18px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #00BFFF;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hamburger {
+  display: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #00BFFF;
+}
+
+/* 모바일 */
+@media (max-width: 768px) {
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 220px;
+    background: #000;
+    padding: 20px;
+  }
+
+  .nav-links a {
+    display: block;
+    margin: 15px 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
 </style>
 
 </head>
@@ -309,18 +361,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 <nav>
-  <div class="logo">CertiSilicon</div>
-  <div class="menu">
+  <div class="logo">
+    <a href="index.html" style="text-decoration:none; color:#00BFFF; font-weight:700;">
+      CertiSilicon
+    </a>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <div class="nav-links" id="navLinks">
 
     <a href="#investor">Investor Overview</a>
     <a href="#ecosystem">Global AI Compute Ecosystem</a>
     <a href="#roadmap">Technology Roadmap</a>
     <a href="#partners">Global Partners</a>
     <a href="press.html">Media & Press</a>
-
+    <a href="#contact">Contact</a>
   </div>
 </nav>
-
 
 <div class="hero">
 <h1 style="line-height:1.2;">
@@ -530,7 +588,16 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
-
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("navLinks");
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "flex";
+  }
+}
+</script>
 </body>
 </html>
 <section id="ecosystem" style="background:#080808; padding:140px 60px;">
