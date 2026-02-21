@@ -719,6 +719,42 @@ function toggleMenu() {
   border:1px solid rgba(0,191,255,0.4);
   cursor:pointer;
 }
+#contact {
+  text-align: center;
+  padding: 140px 20px;
+  background: linear-gradient(180deg,#0A0A0A,#111);
+}
+
+#contact h2 {
+  font-size: 48px;
+  margin-bottom: 40px;
+  color: #00BFFF;
+}
+
+.contact-box {
+  display: inline-block;
+  background: #111;
+  padding: 50px 80px;
+  border-radius: 25px;
+  box-shadow: 0 0 50px rgba(0,191,255,0.25);
+  transition: 0.4s;
+}
+
+.contact-box p {
+  font-size: 20px;
+  color: #aaa;
+  margin-bottom: 15px;
+}
+
+.contact-box strong {
+  font-size: 28px;
+  color: #00BFFF;
+}
+
+.contact-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 70px rgba(0,191,255,0.4);
+}
 </style>
 
 
@@ -728,9 +764,12 @@ function toggleMenu() {
 
 
 <section id="contact">
-<h2>Contact</h2>
-<p>Email: sales@certisilicon.com</p>
-<p>Seoul, Republic of Korea</p>
+  <h2>Contact</h2>
+
+  <div class="contact-box">
+    <p>Business & Partnership Inquiry</p>
+    <strong>sales@certisilicon.com</strong>
+  </div>
 </section>
 
 <footer>
