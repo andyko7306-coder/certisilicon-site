@@ -171,6 +171,124 @@ footer { background:#111; padding:60px; text-align:center; margin-top:100px; }
 }
 
 </style>
+
+<style>
+.team-logo {
+    max-width:260px;
+    margin-bottom:25px;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 0 8px rgba(0,191,255,0.4));
+}
+.team-logo:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 20px rgba(0,191,255,0.8));
+}
+.collab-symbol {
+    font-size:48px;
+    color:#00BFFF;
+    margin:30px 0;
+    opacity:0.7;
+}
+@media (max-width:768px) {
+    .team-logo {
+        max-width:180px;
+    }
+    .collab-symbol {
+        font-size:36px;
+    }
+}
+</style>
+
+
+<style>
+.hero-dynamic {
+    display:inline-block;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-out {
+    opacity:0;
+    transform:translateY(10px);
+}
+.fade-in {
+    opacity:1;
+    transform:translateY(0);
+}
+</style>
+
+
+
+
+<style>
+.hero-dynamic {
+    display:inline-block;
+    opacity:1;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-out {
+    opacity:0;
+    transform:translateY(8px);
+}
+.fade-in {
+    opacity:1;
+    transform:translateY(0);
+}
+</style>
+
+
+
+
+
+
+<style>
+
+</style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const data = [
+        {
+            title: "Rayon",
+            sub: "Strategic AI Compute Platform"
+        },
+        {
+            title: "LiveRay",
+            sub: "Real-Time AI Acceleration Architecture"
+        }
+    ];
+
+    let i = 0;
+
+    const titleEl = document.getElementById("dynamic-title");
+    const subEl = document.getElementById("dynamic-sub");
+
+    setInterval(function () {
+
+        titleEl.style.opacity = 0;
+        subEl.style.opacity = 0;
+
+        setTimeout(function () {
+            i = (i + 1) % data.length;
+            titleEl.textContent = data[i].title;
+            subEl.textContent = data[i].sub;
+
+            titleEl.style.opacity = 1;
+            subEl.style.opacity = 1;
+
+        }, 700);
+
+    }, 5000); // slower transition (5 seconds)
+
+});
+</script>
+
+<style>
+#dynamic-title, #dynamic-sub {
+    transition: opacity 0.7s ease-in-out;
+}
+</style>
+
 </head>
 
 <body>
@@ -197,10 +315,66 @@ footer { background:#111; padding:60px; text-align:center; margin-top:100px; }
 
 
 <div class="hero">
-<h1>Rayon</h1>
+<h1 style="line-height:1.2;">
+        <span id="dynamic-title">Rayon</span><br>
+        <span id="dynamic-sub" style="font-size:28px; font-weight:400; color:#00BFFF;">
+            Strategic AI Compute Platform
+        </span>
+    </h1>
 <p>Korea’s Strategic AI Compute Brand redefining sovereign infrastructure, hyperscale acceleration, and next-generation AI deployment.</p>
 </div>
 
+
+
+<section id="structure" style="background:#0b0b0b; padding:140px 60px;">
+  <div style="max-width:1300px; margin:auto; text-align:center;">
+    <h2 style="font-size:46px; color:#00BFFF; margin-bottom:20px;">Our Team</h2>
+    <p style="font-size:20px; color:#aaa; margin-bottom:80px;">
+      A dual-engine AI compute organization combining deep architecture research and commercial execution.
+    </p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:60px;">
+
+      <!-- Sejong GPU Research Lab Card -->
+      <div style="background:#111; border-radius:20px; padding:50px 40px; 
+                  box-shadow:0 0 40px rgba(0,191,255,0.15); 
+                  transition:0.4s;">
+        <div style="height:120px; width:120px; margin:auto; border-radius:50%;
+                    background:linear-gradient(135deg,#00BFFF,#005f99);
+                    display:flex; align-items:center; justify-content:center;
+                    font-size:40px;">🧠</div>
+        <h3 style="margin-top:30px; font-size:28px;">Sejong GPU Research Lab</h3>
+        <h4 style="color:#00BFFF; margin:15px 0 25px 0;">Deep Architecture & Core Hardware Innovation</h4>
+        <ul style="line-height:2; font-size:18px; color:#ddd; text-align:left;">
+          <li>GPU Microarchitecture R&D</li>
+          <li>AI Accelerator Core Design</li>
+          <li>Parallel Processing Optimization</li>
+          <li>Next-Generation Compute Research</li>
+        </ul>
+      </div>
+
+      <!-- CertiSilicon Card -->
+      <div style="background:#111; border-radius:20px; padding:50px 40px; 
+                  box-shadow:0 0 40px rgba(0,191,255,0.15); 
+                  transition:0.4s;">
+        <div style="height:120px; width:120px; margin:auto; border-radius:50%;
+                    background:linear-gradient(135deg,#00BFFF,#005f99);
+                    display:flex; align-items:center; justify-content:center;
+                    font-size:40px;">🚀</div>
+        <h3 style="margin-top:30px; font-size:28px;">CertiSilicon</h3>
+        <h4 style="color:#00BFFF; margin:15px 0 25px 0;">From Silicon to Solution</h4>
+        <ul style="line-height:2; font-size:18px; color:#ddd; text-align:left;">
+          <li>Product Engineering</li>
+          <li>Platform Integration</li>
+          <li>Software Stack & SDK Development</li>
+          <li>System Optimization</li>
+          <li>Commercial Deployment</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <section id="vision" style="padding:120px 60px; max-width:1300px; margin:auto;">
 <h2 style="color:#00BFFF; font-size:48px; margin-bottom:40px;">Our Vision</h2>
@@ -294,19 +468,118 @@ deployment stability, and long-term operational sustainability.
 </ul>
 </section>
 
-<section id="contact">
-<h2>Contact</h2>
-<p>Email: sales@certisilicon.com</p>
-<p>Seoul, Republic of Korea</p>
+<section id="investor" style="background:#050505; padding:140px 60px; text-align:center;">
+  <div style="max-width:1100px; margin:auto;">
+    <h2 style="font-size:44px; color:#00BFFF; margin-bottom:30px;">
+      Investor Overview
+    </h2>
+    <p style="font-size:20px; color:#aaa; margin-bottom:50px;">
+      CertiSilicon is building a sovereign AI compute platform combining advanced GPU architecture,
+      scalable system integration, and strategic global partnerships.
+    </p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:40px;">
+      <div style="background:#111; padding:40px; border-radius:18px;">
+        <h3>Technology Moat</h3>
+        <p style="color:#bbb;">GPU microarchitecture + full-stack platform integration</p>
+      </div>
+      <div style="background:#111; padding:40px; border-radius:18px;">
+        <h3>Market Timing</h3>
+        <p style="color:#bbb;">Explosive AI infrastructure expansion in Asia</p>
+      </div>
+      <div style="background:#111; padding:40px; border-radius:18px;">
+        <h3>Scalability</h3>
+        <p style="color:#bbb;">Multi-board AI cluster architecture readiness</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<footer>
-© 2026 CertiSilicon. Strategic AI Compute Platform.
-</footer>
 
 
 
+</body>
+</html>
+<section id="ecosystem" style="background:#080808; padding:140px 60px;">
+  <div style="max-width:1300px; margin:auto; text-align:center;">
+    <h2 style="font-size:46px; color:#00BFFF; margin-bottom:20px;">
+      Global AI Compute Ecosystem
+    </h2>
+    <p style="font-size:20px; color:#aaa; margin-bottom:80px;">
+      CertiSilicon collaborates with strategic global partners to accelerate 
+      next-generation AI GPU architecture and large-scale deployment.
+    </p>
 
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:60px;">
+
+      <div style="background:#111; border-radius:20px; padding:50px 40px;
+                  box-shadow:0 0 40px rgba(0,191,255,0.15); transition:0.4s;">
+        <h3 style="font-size:26px; margin-bottom:15px;">MetaX</h3>
+        <p style="color:#00BFFF; margin-bottom:20px;">
+          GPU Architecture Collaboration Partner
+        </p>
+        <p style="color:#ccc; line-height:1.8;">
+          Advanced GPU technology collaboration enabling scalable AI acceleration 
+          and high-performance compute platform integration.
+        </p>
+      </div>
+
+      <div style="background:#111; border-radius:20px; padding:50px 40px;
+                  box-shadow:0 0 40px rgba(0,191,255,0.15); transition:0.4s;">
+        <h3 style="font-size:26px; margin-bottom:15px;">YLcloud</h3>
+        <p style="color:#00BFFF; margin-bottom:20px;">
+          Regional Enablement & Manufacturing Alliance Partner
+        </p>
+        <p style="color:#ccc; line-height:1.8;">
+          Strategic supply chain coordination and regional manufacturing enablement 
+          supporting large-scale AI infrastructure deployment.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section id="roadmap" style="background:#080808; padding:140px 60px;">
+  <div style="max-width:1200px; margin:auto; text-align:center;">
+    <h2 style="font-size:44px; color:#00BFFF; margin-bottom:60px;">
+      Technology Roadmap
+    </h2>
+    <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:60px;">
+      <div>
+        <h3>2025</h3>
+        <p style="color:#aaa;">Rayon Platform Commercial Launch</p>
+      </div>
+      <div>
+        <h3>2026</h3>
+        <p style="color:#aaa;">Advanced Multi-GPU Cluster Deployment</p>
+      </div>
+      <div>
+        <h3>2027+</h3>
+        <p style="color:#aaa;">Next-Gen AI Accelerator Research</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="partners" style="background:#050505; padding:120px 0; text-align:center;">
+  <h2 style="color:#00BFFF; margin-bottom:50px;">Global Partners</h2>
+  <div class="partner-slider" style="overflow:hidden; white-space:nowrap;">
+    <div class="slide-track" style="display:inline-block; animation:scroll 20s linear infinite;">
+      <span style="margin:0 60px; font-size:28px;">MetaX</span>
+      <span style="margin:0 60px; font-size:28px;">YLcloud</span>
+      <span style="margin:0 60px; font-size:28px;">Sejong GPU Lab</span>
+      <span style="margin:0 60px; font-size:28px;">CertiSilicon</span>
+    </div>
+  </div>
+</section>
+
+<style>
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+</style>
 
 <section id="press" style="padding:120px 60px; max-width:1300px; margin:auto;">
 <h2 style="color:#00BFFF; font-size:48px; margin-bottom:20px;">Media & Press</h2>
@@ -353,5 +626,15 @@ press@certisilicon.com
 
 </section>
 
-</body>
-</html>
+
+<section id="contact">
+<h2>Contact</h2>
+<p>Email: sales@certisilicon.com</p>
+<p>Seoul, Republic of Korea</p>
+</section>
+
+<footer>
+© 2026 CertiSilicon. Strategic AI Compute Platform.
+</footer>
+
+
