@@ -785,13 +785,21 @@ document.addEventListener("DOMContentLoaded", function() {
   line-height: 1;
 }
 
+</style>
+<style>
+/* ===== FORCE DESKTOP HIDE ===== */
+.hamburger {
+  display: none;
+}
 
-
+/* ===== MOBILE ONLY ===== */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+}
 
 </style>
-
-
-
 
 <section id="contact">
   <h2>Contact</h2>
