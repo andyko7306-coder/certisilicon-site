@@ -383,50 +383,6 @@ nav {
     display: block;
   }
 }
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    const data = [
-        { title: "Rayon", sub: "Strategic AI Compute Platform" },
-        { title: "LiveRay", sub: "Real-Time AI Acceleration Architecture" }
-    ];
-
-    let i = 0;
-    const titleEl = document.getElementById("dynamic-title");
-    const subEl = document.getElementById("dynamic-sub");
-
-    setInterval(function () {
-        titleEl.style.opacity = 0;
-        subEl.style.opacity = 0;
-
-        setTimeout(function () {
-            i = (i + 1) % data.length;
-            titleEl.textContent = data[i].title;
-            subEl.textContent = data[i].sub;
-
-            titleEl.style.opacity = 1;
-            subEl.style.opacity = 1;
-        }, 700);
-
-    }, 5000);
-
-    /* 🔥 여기부터 햄버거 기능 추가 */
-
-    const hamburger = document.querySelector(".hamburger");
-    const navLinks = document.getElementById("navLinks");
-
-    hamburger.addEventListener("click", function () {
-        navLinks.classList.toggle("active");
-    });
-
-    document.querySelectorAll("#navLinks a").forEach(link => {
-        link.addEventListener("click", function () {
-            navLinks.classList.remove("active");
-        });
-    });
-
-});
-</script>
 </style>
 
 </head>
