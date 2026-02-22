@@ -398,7 +398,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 9999;
+  z-index: 1000;
 }
 
 .nav-links {
@@ -955,15 +955,19 @@ document.addEventListener("DOMContentLoaded", function() {
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("navLinks");
 
-  hamburger.addEventListener("click", function() {
-    navLinks.classList.toggle("active");
-  });
+  if (hamburger && navLinks) {
 
-  document.querySelectorAll("#navLinks a").forEach(link => {
-    link.addEventListener("click", function() {
-      navLinks.classList.remove("active");
+    hamburger.onclick = function() {
+      navLinks.classList.toggle("active");
+    };
+
+    document.querySelectorAll("#navLinks a").forEach(link => {
+      link.onclick = function() {
+        navLinks.classList.remove("active");
+      };
     });
-  });
+
+  }
 
 });
 </script>
