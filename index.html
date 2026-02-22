@@ -304,24 +304,18 @@ document.addEventListener("DOMContentLoaded", function () {
 }
 /* ===== FORCE FIX HAMBURGER ===== */
 
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #000;
-  z-index: 1000;
-}
+/* ===== HAMBURGER CLEAN VERSION ===== */
 
 .hamburger {
   display: none;
   font-size: 28px;
-  cursor: pointer;
   color: #00BFFF;
+  cursor: pointer;
+  position: relative;
+  z-index: 100000;
 }
 
 @media (max-width:768px) {
-
   .hamburger {
     display: block;
   }
@@ -330,7 +324,7 @@ nav {
     position: absolute;
     top: 60px;
     right: 0;
-    width: 230px;
+    width: 220px;
     background: #111;
     padding: 20px;
     flex-direction: column;
@@ -340,7 +334,32 @@ nav {
   .nav-links.active {
     display: flex;
   }
+}
 
+nav {
+  z-index: 99999;
+  position: fixed;
+}
+
+@media (max-width:768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 220px;
+    background: #111;
+    padding: 20px;
+    flex-direction: column;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
 }
 
 </style>
