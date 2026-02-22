@@ -812,21 +812,40 @@ document.addEventListener("DOMContentLoaded", function(){
 }
 @media (max-width:768px) {
 
-   .hamburger {
-    display:block;
-    cursor:pointer;
+  nav {
+    padding: 18px 20px;
   }
 
   .nav-links {
-    display:none;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 220px;
+    background: #000;
+    padding: 20px;
+    flex-direction: column;
+    display: none;
   }
 
   .nav-links.active {
-    display:flex;
-    flex-direction:column;
+    display: flex;
   }
 
-}</style>
+  .nav-links a {
+    margin: 12px 0;
+  }
+
+  .hamburger {
+    display: block;
+    font-size: 28px;
+    cursor: pointer;
+    color: #00BFFF;
+  }
+
+}
+
+
+</style>
 
 
 
