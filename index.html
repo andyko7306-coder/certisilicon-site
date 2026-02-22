@@ -379,6 +379,25 @@ nav {
   </div>
 
   <div class="hamburger" onclick="toggleMenu()">☰</div>
+<script>
+function toggleMenu() {
+  const menu = document.getElementById("navLinks");
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "flex";
+  }
+}
+
+/* 🔥 메뉴 클릭 시 자동 닫기 */
+document.querySelectorAll("#navLinks a").forEach(link => {
+  link.addEventListener("click", function() {
+    if (window.innerWidth <= 768) {
+      document.getElementById("navLinks").style.display = "none";
+    }
+  });
+});
+</script>
 
   <div class="nav-links" id="navLinks">
 
