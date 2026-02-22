@@ -279,6 +279,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 700);
 
     }, 5000); // slower transition (5 seconds)
+    /* ===== Hamburger Menu ===== */
+
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.getElementById("navLinks");
+
+    if (hamburger && navLinks) {
+
+        hamburger.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+        });
+
+        document.querySelectorAll("#navLinks a").forEach(link => {
+            link.addEventListener("click", function () {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove("active");
+                }
+            });
+        });
+
+    }
 
 });
 </script>
@@ -609,6 +629,22 @@ function toggleMenu() {
   }
 }
 </script>
+<script>
+function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("active");
+}
+
+/* 메뉴 클릭하면 자동 닫힘 */
+document.querySelectorAll("#navLinks a").forEach(link => {
+    link.addEventListener("click", function () {
+        if (window.innerWidth <= 768) {
+            document.getElementById("navLinks").classList.remove("active");
+        }
+    });
+});
+</script>
+
 </body>
 </html>
 <section id="ecosystem" style="background:#080808; padding:140px 60px;">
@@ -766,16 +802,19 @@ function toggleMenu() {
   transform: translateY(-8px);
   box-shadow: 0 0 70px rgba(0,191,255,0.4);
 }
-@media (max-width: 768px) {
+@media (max-width:768px) {
 
-  .contact-box {
-    width: 90%;
-    padding: 35px 20px;
+  .nav-links {
+    opacity:0;
+    pointer-events:none;
+    transition:0.3s;
   }
 
-  #contact h2 {
-    font-size: 34
-</style>
+  .nav-links.active {
+    opacity:1;
+    pointer-events:auto;
+  }
+}</style>
 
 
 
