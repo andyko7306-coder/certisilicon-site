@@ -305,13 +305,14 @@ document.addEventListener("DOMContentLoaded", function () {
 /* ===== FORCE FIX HAMBURGER ===== */
 
 nav {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  background: #000 !important;
-  z-index: 999999 !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #000;
+  z-index: 1000;
 }
+
 .hamburger {
   display: none;
   font-size: 28px;
@@ -319,7 +320,28 @@ nav {
   color: #00BFFF;
 }
 
+@media (max-width:768px) {
 
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 230px;
+    background: #111;
+    padding: 20px;
+    flex-direction: column;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+}
 
 </style>
 
