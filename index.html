@@ -501,7 +501,7 @@ nav {
 </div>
 
       <!-- CertiSilicon Card -->
-      <div style="background:#111; border-radius:20px; padding:50px 40px; 
+      <div class="team-box" onclick="openModal('certiModal')" style="cursor:pointer;">
                   box-shadow:0 0 40px rgba(0,191,255,0.15); 
                   transition:0.4s;">
         <div style="height:120px; width:120px; margin:auto; border-radius:50%;
@@ -953,6 +953,29 @@ document.addEventListener("DOMContentLoaded", function() {
     <p>• 세계최초 Ray-Tracing GPU 개발</p>
   </div>
 </div>
+<!-- CertiSilicon Modal -->
+<div id="certiModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('certiModal')">&times;</span>
+    <h2>CertiSilicon Board Members</h2>
+
+    <p><strong>Founder & CEO:</strong> Andy Ko</p>
+    <p>• Brite Semiconductor Korea Region director</p>
+    <p>• 실리콘아츠 사업총괄 본부장</p>
+
+    <p><strong>Founder & CTO:</strong> 경종민교수</p>
+    <p>• 카이스트 명예교수</p>
+    <p>• 스마트IT융합시스템연구단 단장</p>
+    <p>• 카이스트 공과대학 전기/전자공학부 석좌교수</p>
+   
+
+    <hr style="margin:30px 0; border:0.5px solid #333;">
+
+  </div>
+</div>
+
+
+
 
 <script>
 function openModal(id) {
