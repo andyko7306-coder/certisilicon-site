@@ -650,31 +650,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
-<script>
-function toggleMenu() {
-  const menu = document.getElementById("navLinks");
-  if (menu.style.display === "flex") {
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "flex";
-  }
-}
-</script>
-<script>
-function toggleMenu() {
-    const navLinks = document.getElementById("navLinks");
-    navLinks.classList.toggle("active");
-}
-
-/* 메뉴 클릭하면 자동 닫힘 */
-document.querySelectorAll("#navLinks a").forEach(link => {
-    link.addEventListener("click", function () {
-        if (window.innerWidth <= 768) {
-            document.getElementById("navLinks").classList.remove("active");
-        }
-    });
-});
-</script>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -695,8 +670,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-</body>
-</html>
+
 <section id="ecosystem" style="background:#080808; padding:140px 60px;">
   <div style="max-width:1300px; margin:auto; text-align:center;">
     <h2 style="font-size:46px; color:#00BFFF; margin-bottom:20px;">
@@ -853,18 +827,32 @@ document.addEventListener("DOMContentLoaded", function() {
   transform: translateY(-8px);
   box-shadow: 0 0 70px rgba(0,191,255,0.4);
 }
+
+
 @media (max-width:768px) {
 
+  .hamburger {
+    display:block;
+    cursor:pointer;
+  }
+
   .nav-links {
-    opacity:0;
-    pointer-events:none;
-    transition:0.3s;
+    position:absolute;
+    top:60px;
+    right:0;
+    width:220px;
+    background:#111;
+    padding:20px;
+    flex-direction:column;
+    display:none;
   }
 
   .nav-links.active {
-    opacity:1;
-    pointer-events:auto;
+    display:flex;
   }
+
+}
+
 }</style>
 
 
@@ -885,5 +873,8 @@ document.addEventListener("DOMContentLoaded", function() {
 <footer>
 © 2026 CertiSilicon. Strategic AI Compute Platform.
 </footer>
+
+</body>
+</html>
 
 
