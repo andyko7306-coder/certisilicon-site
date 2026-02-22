@@ -71,28 +71,9 @@ footer { background:#111; padding:60px; text-align:center; margin-top:100px; }
 .nav-right { display:flex; align-items:center; gap:25px; margin-right:20px; flex-wrap:wrap; }
 
 .dropdown { position:relative; }
-.nav-links {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 70px;
-  right: 0;
-  width: 240px;
-  background: #000;
-  padding: 20px;
-  transform: translateY(-20px);
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.3s ease;
-}
 
-.nav-links.active {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-}
 .dropdown-content {
-
+  display:none;
   position:absolute;
   right:0;
   background:#111;
@@ -306,17 +287,6 @@ document.addEventListener("DOMContentLoaded", function () {
 #dynamic-title, #dynamic-sub {
     transition: opacity 0.7s ease-in-out;
 }
-.logo-text {
-  color: #FFFFFF;
-  font-size: 26px;
-  font-weight: 700;
-  text-decoration: none;
-  letter-spacing: 0.5px;
-}
-
-.logo-text:hover {
-  opacity: 0.85;
-}
 </style>
 
 
@@ -392,31 +362,12 @@ nav {
 
 <nav>
   <div class="logo">
-    <a href="index.html"  class="logo-text">
+    <a href="index.html" style="text-decoration:none; color:#00BFFF; font-weight:700;">
       CertiSilicon
     </a>
   </div>
 
   <div class="hamburger" onclick="toggleMenu()">☰</div>
-<script>
-function toggleMenu() {
-  const menu = document.getElementById("navLinks");
-  if (menu.style.display === "flex") {
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "flex";
-  }
-}
-
-/* 🔥 메뉴 클릭 시 자동 닫기 */
-document.querySelectorAll("#navLinks a").forEach(link => {
-  link.addEventListener("click", function() {
-    if (window.innerWidth <= 768) {
-      document.getElementById("navLinks").style.display = "none";
-    }
-  });
-});
-</script>
 
   <div class="nav-links" id="navLinks">
 
