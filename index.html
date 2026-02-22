@@ -384,10 +384,7 @@ nav {
 .logo-text:hover {
   opacity: 0.85;
 }
-.hamburger {
-  position: relative;
-  z-index: 3000;
-}
+
 </style>
 
 </head>
@@ -401,10 +398,7 @@ nav {
     </a>
   </div>
 
-<div class="hamburger">☰</div>
-nav {
-  z-index: 3000;
-}
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
 
   <div class="nav-links" id="navLinks">
 
@@ -626,25 +620,33 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function(){
-
-  const hamburger = document.querySelector(".hamburger");
-  const navLinks = document.getElementById("navLinks");
-
-  hamburger.addEventListener("click", function(){
+function toggleMenu() {
+  const menu = document.getElementById("navLinks");
+  if (menu.style.display === "flex") {
+    menu.style.display = "none";
+  } else {
+    menu.style.display = "flex";
+  }
+}
+</script>
+<script>
+function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
     navLinks.classList.toggle("active");
-  });
+}
 
-  document.querySelectorAll("#navLinks a").forEach(link => {
-    link.addEventListener("click", function(){
-      navLinks.classList.remove("active");
+/* 메뉴 클릭하면 자동 닫힘 */
+document.querySelectorAll("#navLinks a").forEach(link => {
+    link.addEventListener("click", function () {
+        if (window.innerWidth <= 768) {
+            document.getElementById("navLinks").classList.remove("active");
+        }
     });
-  });
-
 });
 </script>
 
-
+</body>
+</html>
 <section id="ecosystem" style="background:#080808; padding:140px 60px;">
   <div style="max-width:1300px; margin:auto; text-align:center;">
     <h2 style="font-size:46px; color:#00BFFF; margin-bottom:20px;">
@@ -765,93 +767,54 @@ document.addEventListener("DOMContentLoaded", function(){
   cursor:pointer;
 }
 #contact {
-  padding: 120px 20px;
   text-align: center;
-  background: linear-gradient(180deg, #0A0A0A, #111);
+  padding: 140px 20px;
+  background: linear-gradient(180deg,#0A0A0A,#111);
 }
 
 #contact h2 {
-  font-size: 44px;
+  font-size: 48px;
   margin-bottom: 40px;
   color: #00BFFF;
 }
 
 .contact-box {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+  display: inline-block;
   background: #111;
-  padding: 50px 40px;
+  padding: 50px 80px;
   border-radius: 25px;
   box-shadow: 0 0 50px rgba(0,191,255,0.25);
-  box-sizing: border-box;   /* 🔥 핵심 */
-  transition: 0.3s;
+  transition: 0.4s;
 }
 
 .contact-box p {
-  font-size: 18px;
+  font-size: 20px;
   color: #aaa;
   margin-bottom: 15px;
 }
 
 .contact-box strong {
-  font-size: 26px;
+  font-size: 28px;
   color: #00BFFF;
-  word-break: break-word;  /* 🔥 이메일 길어도 안 튀어나감 */
 }
 
-/* 모바일 최적화 */
-@media (max-width:768px) {
-
-  #contact h2 {
-    font-size: 32px;
-  }
-
-  .contact-box {
-    padding: 35px 20px;
-  }
-
-  .contact-box strong {
-    font-size: 20px;
-  }
-
+.contact-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 70px rgba(0,191,255,0.4);
 }
 @media (max-width:768px) {
-
-  nav {
-    padding: 18px 20px;
-  }
 
   .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 220px;
-    background: #000;
-    padding: 20px;
-    flex-direction: column;
-    display: none;
+    opacity:0;
+    pointer-events:none;
+    transition:0.3s;
   }
 
   .nav-links.active {
-    display: flex;
+    opacity:1;
+    pointer-events:auto;
   }
-
-  .nav-links a {
-    margin: 12px 0;
-  }
-
-  .hamburger {
-    display: block;
-    font-size: 28px;
-    cursor: pointer;
-    color: #00BFFF;
-  }
-
-}
-
-
-</style>
+}</style>
 
 
 
@@ -871,8 +834,5 @@ document.addEventListener("DOMContentLoaded", function(){
 <footer>
 © 2026 CertiSilicon. Strategic AI Compute Platform.
 </footer>
-
-</body>
-</html>
 
 
