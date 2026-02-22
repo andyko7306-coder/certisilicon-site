@@ -767,40 +767,56 @@ document.querySelectorAll("#navLinks a").forEach(link => {
   cursor:pointer;
 }
 #contact {
+  padding: 120px 20px;
   text-align: center;
-  padding: 140px 20px;
-  background: linear-gradient(180deg,#0A0A0A,#111);
+  background: linear-gradient(180deg, #0A0A0A, #111);
 }
 
 #contact h2 {
-  font-size: 48px;
+  font-size: 44px;
   margin-bottom: 40px;
   color: #00BFFF;
 }
 
 .contact-box {
-  display: inline-block;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   background: #111;
-  padding: 50px 80px;
+  padding: 50px 40px;
   border-radius: 25px;
   box-shadow: 0 0 50px rgba(0,191,255,0.25);
-  transition: 0.4s;
+  box-sizing: border-box;   /* 🔥 핵심 */
+  transition: 0.3s;
 }
 
 .contact-box p {
-  font-size: 20px;
+  font-size: 18px;
   color: #aaa;
   margin-bottom: 15px;
 }
 
 .contact-box strong {
-  font-size: 28px;
+  font-size: 26px;
   color: #00BFFF;
+  word-break: break-word;  /* 🔥 이메일 길어도 안 튀어나감 */
 }
 
-.contact-box:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 70px rgba(0,191,255,0.4);
+/* 모바일 최적화 */
+@media (max-width:768px) {
+
+  #contact h2 {
+    font-size: 32px;
+  }
+
+  .contact-box {
+    padding: 35px 20px;
+  }
+
+  .contact-box strong {
+    font-size: 20px;
+  }
+
 }
 @media (max-width:768px) {
 
