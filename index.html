@@ -236,62 +236,68 @@ footer { background:#111; padding:60px; text-align:center; margin-top:100px; }
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    const data = [
-        {
-            title: "Rayon",
-            sub: "Strategic AI Compute Platform"
-        },
-        {
-            title: "LiveRay",
-            sub: "Real-Time AI Acceleration Architecture"
-        }
-    
+  /* ===============================
+     HERO FADE ANIMATION
+  =============================== */
 
-    let i = 0;
+  const data = [
+    { title: "Rayon", sub: "Strategic AI Compute Platform" },
+    { title: "LiveRay", sub: "Real-Time AI Acceleration Architecture" }
+  ];
 
-    const titleEl = document.getElementById("dynamic-title");
-    const subEl = document.getElementById("dynamic-sub");
+  let i = 0;
+
+  const titleEl = document.getElementById("dynamic-title");
+  const subEl = document.getElementById("dynamic-sub");
+
+  if (titleEl && subEl) {
+
+    // transition 강제 적용 (CSS 영향 제거)
+    titleEl.style.transition = "opacity 0.6s ease";
+    subEl.style.transition = "opacity 0.6s ease";
 
     setInterval(function () {
 
-        titleEl.style.opacity = 0;
-        subEl.style.opacity = 0;
+      titleEl.style.opacity = "0";
+      subEl.style.opacity = "0";
 
-        setTimeout(function () {
-            i = (i + 1) % data.length;
-            titleEl.textContent = data[i].title;
-            subEl.textContent = data[i].sub;
+      setTimeout(function () {
 
-            titleEl.style.opacity = 1;
-            subEl.style.opacity = 1;
+        i = (i + 1) % data.length;
 
-        }, 700);
+        titleEl.textContent = data[i].title;
+        subEl.textContent = data[i].sub;
 
-    }, 5000); // slower transition (5 seconds)
-    /* ===== Hamburger Menu ===== */
+        titleEl.style.opacity = "1";
+        subEl.style.opacity = "1";
 
-    const hamburger = document.querySelector(".hamburger");
-    const navLinks = document.getElementById("navLinks");
+      }, 600);
 
-    if (hamburger && navLinks) {
+    }, 5000);
+  }
 
-        hamburger.addEventListener("click", function () {
-            navLinks.classList.toggle("active");
-        });
+  /* ===============================
+     HAMBURGER MENU
+  =============================== */
 
-        document.querySelectorAll("#navLinks a").forEach(link => {
-            link.addEventListener("click", function () {
-                if (window.innerWidth <= 768) {
-                    navLinks.classList.remove("active");
-                }
-            });
-        });
+  const hamburger = document.querySelector(".hamburger");
+  const navLinks = document.getElementById("navLinks");
 
-    }
+  if (hamburger && navLinks) {
+
+    hamburger.addEventListener("click", function () {
+      navLinks.classList.toggle("active");
+    });
+
+    document.querySelectorAll("#navLinks a").forEach(link => {
+      link.addEventListener("click", function () {
+        navLinks.classList.remove("active");
+      });
+    });
+  }
 
 });
 </script>
-
 <style>
 #dynamic-title, #dynamic-sub {
     transition: opacity 0.7s ease-in-out;
