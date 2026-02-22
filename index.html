@@ -398,7 +398,7 @@ nav {
     </a>
   </div>
 
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+<div class="hamburger" onclick="toggleMenu()">☰</div>
 
   <div class="nav-links" id="navLinks">
 
@@ -619,16 +619,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
-<script>
-function toggleMenu() {
-  const menu = document.getElementById("navLinks");
-  if (menu.style.display === "flex") {
-    menu.style.display = "none";
-  } else {
-    menu.style.display = "flex";
-  }
-}
-</script>
+
 <script>
 function toggleMenu() {
     const navLinks = document.getElementById("navLinks");
@@ -820,16 +811,26 @@ document.querySelectorAll("#navLinks a").forEach(link => {
 }
 @media (max-width:768px) {
 
+   .hamburger {
+    display:block;
+    cursor:pointer;
+  }
+
   .nav-links {
-    opacity:0;
-    pointer-events:none;
-    transition:0.3s;
+    display:none;
+    flex-direction:column;
+    background:#000;
+    position:absolute;
+    top:70px;
+    right:0;
+    width:240px;
+    padding:20px;
   }
 
   .nav-links.active {
-    opacity:1;
-    pointer-events:auto;
+    display:flex;
   }
+
 }</style>
 
 
