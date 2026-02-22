@@ -649,24 +649,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
 
-  const hamburger = document.getElementById("hamburger");
-  const navLinks = document.getElementById("navLinks");
-
-  hamburger.addEventListener("click", function() {
-    navLinks.classList.toggle("active");
-  });
-
-  document.querySelectorAll("#navLinks a").forEach(link => {
-    link.addEventListener("click", function() {
-      navLinks.classList.remove("active");
-    });
-  });
-
-});
-</script>
 
 
 <section id="ecosystem" style="background:#080808; padding:140px 60px;">
@@ -871,6 +854,25 @@ document.addEventListener("DOMContentLoaded", function() {
 <footer>
 © 2026 CertiSilicon. Strategic AI Compute Platform.
 </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("navLinks");
+
+  hamburger.addEventListener("click", function() {
+    navLinks.classList.toggle("active");
+  });
+
+  document.querySelectorAll("#navLinks a").forEach(link => {
+    link.addEventListener("click", function() {
+      navLinks.classList.remove("active");
+    });
+  });
+
+});
+</script>
 
 </body>
 </html>
