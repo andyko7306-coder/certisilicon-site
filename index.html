@@ -344,22 +344,63 @@ nav {
 
 /* 모바일 */
 @media (max-width: 768px) {
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #000;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 9999;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #00BFFF;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: #00BFFF;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width:768px) {
+
+  .hamburger {
+    display: block;
+  }
 
   .nav-links {
-    display: none;
-    flex-direction: column;
     position: absolute;
-    top: 70px;
+    top: 60px;
     right: 0;
-    width: 220px;
-    background: #000;
+    width: 230px;
+    background: #111;
+    flex-direction: column;
     padding: 20px;
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
   }
 
   .nav-links a {
-    display: block;
-    margin: 15px 0;
+    margin: 12px 0;
   }
+}
 
   .hamburger {
     display: block;
@@ -386,14 +427,12 @@ nav {
 
 <nav>
   <div class="logo">
-    <a href="index.html"  class="logo-text">     CertiSilicon
-    </a>
+    <a href="index.html" class="logo-text">CertiSilicon</a>
   </div>
 
-  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  <div class="hamburger" id="hamburger">☰</div>
 
   <div class="nav-links" id="navLinks">
-
     <a href="#investor">Investor Overview</a>
     <a href="#ecosystem">Global AI Compute Ecosystem</a>
     <a href="#roadmap">Technology Roadmap</a>
@@ -634,6 +673,25 @@ document.querySelectorAll("#navLinks a").forEach(link => {
             document.getElementById("navLinks").classList.remove("active");
         }
     });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("navLinks");
+
+  hamburger.addEventListener("click", function() {
+    navLinks.classList.toggle("active");
+  });
+
+  document.querySelectorAll("#navLinks a").forEach(link => {
+    link.addEventListener("click", function() {
+      navLinks.classList.remove("active");
+    });
+  });
+
 });
 </script>
 
