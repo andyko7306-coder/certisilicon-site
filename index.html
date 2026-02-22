@@ -238,10 +238,6 @@ footer { background:#111; padding:60px; text-align:center; margin-top:100px; }
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-  /* ===============================
-     HERO FADE ANIMATION
-  =============================== */
-
   const data = [
     { title: "Rayon", sub: "Strategic AI Compute Platform" },
     { title: "LiveRay", sub: "Real-Time AI Acceleration Architecture" }
@@ -252,31 +248,30 @@ document.addEventListener("DOMContentLoaded", function () {
   const titleEl = document.getElementById("dynamic-title");
   const subEl = document.getElementById("dynamic-sub");
 
-  if (titleEl && subEl) {
+  if (!titleEl || !subEl) return;
 
-    // transition 강제 적용 (CSS 영향 제거)
-    titleEl.style.transition = "opacity 0.6s ease";
-    subEl.style.transition = "opacity 0.6s ease";
+  // 기본 transition 강제 지정
+  titleEl.style.transition = "opacity 0.6s ease";
+  subEl.style.transition = "opacity 0.6s ease";
 
-    setInterval(function () {
+  setInterval(() => {
 
-      titleEl.style.opacity = "0";
-      subEl.style.opacity = "0";
+    titleEl.style.opacity = "0";
+    subEl.style.opacity = "0";
 
-      setTimeout(function () {
+    setTimeout(() => {
+      i = (i + 1) % data.length;
 
-        i = (i + 1) % data.length;
+      titleEl.textContent = data[i].title;
+      subEl.textContent = data[i].sub;
 
-        titleEl.textContent = data[i].title;
-        subEl.textContent = data[i].sub;
+      titleEl.style.opacity = "1";
+      subEl.style.opacity = "1";
+    }, 600);
 
-        titleEl.style.opacity = "1";
-        subEl.style.opacity = "1";
+  }, 5000);
 
-      }, 600);
-
-    }, 5000);
-  }
+});
 </script>
  <style>
 #dynamic-title, #dynamic-sub {
@@ -795,6 +790,16 @@ document.addEventListener("DOMContentLoaded", function() {
   font-size: 28px;
   cursor: pointer;
 }
+
+/* ===== FORCE HAMBURGER SIZE ===== */
+.hamburger {
+  font-size: 36px !important;
+  font-weight: bold;
+  line-height: 1;
+}
+
+
+
 
 </style>
 
