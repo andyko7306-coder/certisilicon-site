@@ -199,21 +199,6 @@ footer { background:#111; padding:60px; text-align:center; margin-top:100px; }
 </style>
 
 
-<style>
-.hero-dynamic {
-    display:inline-block;
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.fade-out {
-    opacity:0;
-    transform:translateY(10px);
-}
-.fade-in {
-    opacity:1;
-    transform:translateY(0);
-}
-</style>
-
 
 
 
@@ -243,39 +228,41 @@ document.addEventListener("DOMContentLoaded", function () {
     { title: "LiveRay", sub: "Real-Time AI Acceleration Architecture" }
   ];
 
-  let i = 0;
+  let index = 0;
 
   const titleEl = document.getElementById("dynamic-title");
   const subEl = document.getElementById("dynamic-sub");
 
   if (!titleEl || !subEl) return;
 
-  // 기본 transition 강제 지정
-  titleEl.style.transition = "opacity 0.6s ease";
-  subEl.style.transition = "opacity 0.6s ease";
+  function changeText() {
 
-  setInterval(() => {
-
+    // fade out
     titleEl.style.opacity = "0";
     subEl.style.opacity = "0";
 
     setTimeout(() => {
-      i = (i + 1) % data.length;
 
-      titleEl.textContent = data[i].title;
-      subEl.textContent = data[i].sub;
+      index = (index + 1) % data.length;
 
+      titleEl.textContent = data[index].title;
+      subEl.textContent = data[index].sub;
+
+      // fade in
       titleEl.style.opacity = "1";
       subEl.style.opacity = "1";
-    }, 600);
 
-  }, 5000);
+    }, 600);
+  }
+
+  setInterval(changeText, 5000);
 
 });
 </script>
  <style>
 #dynamic-title, #dynamic-sub {
     transition: opacity 0.7s ease-in-out;
+    opacity:1;
 }
 
 
