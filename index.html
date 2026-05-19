@@ -1,532 +1,1411 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CertiSilicon | AI Infrastructure Technology</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-font-family:'Inter',sans-serif;
-background:#050816;
-color:#f8fafc;
-line-height:1.7;
-overflow-x:hidden;
+:root{
+  --bg:#03060f;
+  --bg2:#070d1e;
+  --surface:rgba(10,18,40,0.9);
+  --border:rgba(255,255,255,0.07);
+  --accent:#2563eb;
+  --accent2:#0ea5e9;
+  --accent-glow:rgba(37,99,235,0.25);
+  --text:#f0f4ff;
+  --text-muted:#8899bb;
+  --text-sub:#c0cce0;
 }
-.container{max-width:1400px;margin:auto;padding:0 32px}
-.lang-ko{display:none}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.7;
+  overflow-x:hidden;
+}
+.container{max-width:1360px;margin:auto;padding:0 40px}
+
+/* NOISE OVERLAY */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:9999;
+  opacity:0.4;
+}
+
+/* HEADER */
 header{
-position:fixed;
-top:0;
-width:100%;
-background:rgba(5,8,22,0.9);
-backdrop-filter:blur(20px);
-border-bottom:1px solid rgba(255,255,255,0.08);
-z-index:999;
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(3,6,15,0.85);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  z-index:999;
+  transition:background .3s;
 }
 .navbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:22px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 0;
 }
-.logo img{height:100px}
-nav{display:flex;gap:34px}
+.logo img{height:120px;display:block}
+nav{display:flex;gap:36px;align-items:center}
 nav a{
-text-decoration:none;
-color:#e2e8f0;
-font-weight:600;
-position:relative;
+  text-decoration:none;
+  color:var(--text-muted);
+  font-family:'Syne',sans-serif;
+  font-weight:600;
+  font-size:.85rem;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  transition:color .2s;
+  position:relative;
 }
-nav a:after{
-content:'';
-position:absolute;
-left:0;
-bottom:-8px;
-width:0;
-height:2px;
-background:#3b82f6;
-transition:.3s;
+nav a::after{
+  content:'';
+  position:absolute;
+  left:0;bottom:-4px;
+  width:0;height:1px;
+  background:var(--accent2);
+  transition:width .3s;
 }
-nav a:hover:after{width:100%}
+nav a:hover{color:var(--text)}
+nav a:hover::after{width:100%}
+.lang-switch{display:flex;gap:6px}
 .lang-switch button{
-padding:10px 16px;
-background:rgba(255,255,255,0.08);
-color:white;
-border:none;
-border-radius:10px;
-font-weight:700;
-cursor:pointer;
-margin-left:8px;
+  padding:7px 14px;
+  background:transparent;
+  color:var(--text-muted);
+  border:1px solid var(--border);
+  border-radius:8px;
+  font-family:'Syne',sans-serif;
+  font-weight:700;
+  font-size:.8rem;
+  cursor:pointer;
+  transition:all .2s;
 }
+.lang-switch button:hover,.lang-switch button.active{
+  background:var(--accent);
+  color:white;
+  border-color:var(--accent);
+}
+
+/* HERO */
 .hero{
-padding:220px 0 140px;
-background:linear-gradient(180deg,#050816,#0f172a);
+  padding:200px 0 140px;
+  position:relative;
+  overflow:hidden;
 }
-.hero-grid{
-display:grid;
-grid-template-columns:1.1fr 1fr;
-gap:70px;
-align-items:center;
+.hero-bg{
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse 80% 60% at 60% 30%, rgba(37,99,235,0.12) 0%, transparent 70%),
+             radial-gradient(ellipse 50% 40% at 20% 60%, rgba(14,165,233,0.06) 0%, transparent 60%);
+}
+.hero-grid-lines{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:80px 80px;
+}
+.hero-layout{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:80px;
+  align-items:center;
+  position:relative;
+  z-index:1;
 }
 .eyebrow{
-font-size:.9rem;
-font-weight:700;
-letter-spacing:1px;
-color:#60a5fa;
-margin-bottom:18px;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:'Syne',sans-serif;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:2px;
+  color:var(--accent2);
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+.eyebrow::before{
+  content:'';
+  width:24px;height:1px;
+  background:var(--accent2);
 }
 .hero h1{
-font-size:5rem;
-line-height:1.03;
-letter-spacing:-2px;
-margin-bottom:28px;
+  font-family:'Syne',sans-serif;
+  font-size:4.2rem;
+  font-weight:800;
+  line-height:1.05;
+  letter-spacing:-2px;
+  margin-bottom:28px;
 }
-.hero p{
-font-size:1.1rem;
-color:#cbd5e1;
-margin-bottom:34px;
-max-width:760px;
+.hero h1 span.grad{
+  background:linear-gradient(135deg,#60a5fa,#38bdf8,#818cf8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
 }
-.hero-buttons{display:flex;gap:16px;flex-wrap:wrap}
+.hero-desc{
+  font-size:1.05rem;
+  color:var(--text-sub);
+  margin-bottom:44px;
+  max-width:560px;
+  line-height:1.8;
+}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px}
 .btn{
-padding:16px 28px;
-border-radius:14px;
-text-decoration:none;
-font-weight:700;
-display:inline-block;
+  padding:14px 26px;
+  border-radius:12px;
+  font-family:'Syne',sans-serif;
+  font-weight:700;
+  font-size:.88rem;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  letter-spacing:.3px;
+  transition:all .25s;
 }
-.primary{background:linear-gradient(135deg,#2563eb,#0ea5e9);color:white}
-.secondary{
-background:rgba(255,255,255,0.08);
-color:white;
-border:1px solid rgba(255,255,255,0.08)
+.btn-primary{
+  background:linear-gradient(135deg,#2563eb,#0ea5e9);
+  color:white;
+  box-shadow:0 4px 24px rgba(37,99,235,0.35);
 }
-.hero-card,.card,.stack-box,.blue-box{
-background:rgba(15,23,42,0.92);
-border:1px solid rgba(255,255,255,0.08);
-border-radius:30px;
-padding:40px;
-backdrop-filter:blur(20px);
-box-shadow:0 20px 60px rgba(0,0,0,0.35);
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 32px rgba(37,99,235,0.5);
 }
-.hero-item{
-padding:18px 0;
-border-bottom:1px solid rgba(255,255,255,0.08)
+.btn-ghost{
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--border);
 }
-.hero-item:last-child{border-bottom:none}
-.section{padding:110px 0}
+.btn-ghost:hover{
+  background:rgba(255,255,255,0.05);
+  border-color:rgba(255,255,255,0.15);
+}
+.hero-stats{
+  display:flex;
+  gap:40px;
+}
+.stat-item{}
+.stat-num{
+  font-family:'Syne',sans-serif;
+  font-size:1.8rem;
+  font-weight:800;
+  color:var(--text);
+  line-height:1;
+  margin-bottom:4px;
+}
+.stat-label{
+  font-size:.8rem;
+  color:var(--text-muted);
+  text-transform:uppercase;
+  letter-spacing:.5px;
+}
+
+/* HERO CARD */
+.hero-panel{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:36px;
+  backdrop-filter:blur(20px);
+  box-shadow:0 24px 80px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.06);
+  position:relative;
+  overflow:hidden;
+}
+.hero-panel::before{
+  content:'';
+  position:absolute;
+  top:-80px;right:-80px;
+  width:200px;height:200px;
+  background:radial-gradient(circle, rgba(37,99,235,0.15), transparent 70%);
+  pointer-events:none;
+}
+.panel-title{
+  font-family:'Syne',sans-serif;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:var(--text-muted);
+  margin-bottom:24px;
+  padding-bottom:16px;
+  border-bottom:1px solid var(--border);
+}
+.panel-item{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  padding:18px 0;
+  border-bottom:1px solid var(--border);
+}
+.panel-item:last-child{border-bottom:none}
+.panel-icon{
+  width:38px;height:38px;
+  border-radius:10px;
+  background:linear-gradient(135deg, rgba(37,99,235,0.2), rgba(14,165,233,0.1));
+  border:1px solid rgba(37,99,235,0.25);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  font-size:1.1rem;
+}
+.panel-item-text{}
+.panel-item-title{
+  font-family:'Syne',sans-serif;
+  font-weight:700;
+  font-size:.95rem;
+  color:var(--text);
+  margin-bottom:2px;
+}
+.panel-item-sub{
+  font-size:.82rem;
+  color:var(--text-muted);
+}
+
+/* SECTION BASE */
+.section{padding:120px 0}
+.section-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:'Syne',sans-serif;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:2px;
+  color:var(--accent2);
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+.section-tag::before{content:'';width:16px;height:1px;background:var(--accent2)}
 .section-title{
-font-size:3rem;
-margin-bottom:18px;
-letter-spacing:-1px;
+  font-family:'Syne',sans-serif;
+  font-size:2.8rem;
+  font-weight:800;
+  letter-spacing:-1.5px;
+  line-height:1.1;
+  margin-bottom:18px;
 }
 .section-sub{
-max-width:900px;
-font-size:1.08rem;
-color:#94a3b8;
-margin-bottom:60px;
+  font-size:1.05rem;
+  color:var(--text-sub);
+  max-width:640px;
+  line-height:1.8;
+  margin-bottom:64px;
 }
-.cards{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:28px;
+
+/* CARDS */
+.cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.cards-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:36px;
+  transition:all .3s;
+  position:relative;
+  overflow:hidden;
 }
-.card h3{font-size:1.5rem;margin-bottom:18px}
-.card p{color:#94a3b8;margin-bottom:22px}
-.feature-list div{margin-bottom:10px;color:#e2e8f0}
-.stack-box{text-align:center;max-width:900px;margin:auto}
-.stack-step{font-size:2rem;font-weight:800;margin:18px 0}
-.arrow{font-size:2rem;color:#3b82f6}
+.card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg, transparent, rgba(37,99,235,0.4), transparent);
+  opacity:0;
+  transition:opacity .3s;
+}
+.card:hover{
+  border-color:rgba(37,99,235,0.3);
+  transform:translateY(-4px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+.card:hover::before{opacity:1}
+.card-icon{
+  width:48px;height:48px;
+  border-radius:14px;
+  background:linear-gradient(135deg, rgba(37,99,235,0.25), rgba(14,165,233,0.12));
+  border:1px solid rgba(37,99,235,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;
+  margin-bottom:24px;
+}
+.card h3{
+  font-family:'Syne',sans-serif;
+  font-size:1.2rem;
+  font-weight:700;
+  margin-bottom:14px;
+  color:var(--text);
+}
+.card p{
+  font-size:.93rem;
+  color:var(--text-muted);
+  line-height:1.7;
+}
+.feature-list{margin-top:20px}
+.feature-list li{
+  list-style:none;
+  padding:7px 0;
+  font-size:.88rem;
+  color:var(--text-sub);
+  padding-left:18px;
+  position:relative;
+}
+.feature-list li::before{
+  content:'';
+  position:absolute;
+  left:0;top:50%;transform:translateY(-50%);
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--accent2);
+}
+
+/* STACK SECTION */
+.stack-section{background:linear-gradient(180deg, var(--bg) 0%, var(--bg2) 50%, var(--bg) 100%)}
+.stack-visual{
+  max-width:860px;
+  margin:0 auto;
+  position:relative;
+}
+.stack-layers{display:flex;flex-direction:column;gap:0}
+.stack-layer{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  gap:0;
+  align-items:stretch;
+}
+.stack-label{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  padding-right:32px;
+  font-family:'Syne',sans-serif;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.5px;
+  color:var(--text-muted);
+  text-align:right;
+  text-transform:uppercase;
+}
+.stack-block{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:24px 32px;
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:all .3s;
+  cursor:default;
+}
+.stack-block:hover{
+  border-color:rgba(37,99,235,0.4);
+  background:rgba(10,18,40,0.98);
+}
+.stack-block-title{
+  font-family:'Syne',sans-serif;
+  font-weight:700;
+  font-size:1rem;
+  color:var(--text);
+}
+.stack-block-desc{
+  font-size:.83rem;
+  color:var(--text-muted);
+  max-width:380px;
+}
+.stack-block-badge{
+  font-family:'Syne',sans-serif;
+  font-size:.7rem;
+  font-weight:700;
+  padding:5px 12px;
+  border-radius:20px;
+  letter-spacing:.5px;
+  flex-shrink:0;
+  margin-left:20px;
+}
+.badge-hw{background:rgba(239,68,68,0.15);color:#f87171;border:1px solid rgba(239,68,68,0.2)}
+.badge-sw{background:rgba(37,99,235,0.15);color:#60a5fa;border:1px solid rgba(37,99,235,0.2)}
+.badge-rt{background:rgba(16,185,129,0.15);color:#34d399;border:1px solid rgba(16,185,129,0.2)}
+.badge-infra{background:rgba(168,85,247,0.15);color:#c084fc;border:1px solid rgba(168,85,247,0.2)}
+.stack-connector{
+  width:2px;height:20px;
+  background:linear-gradient(180deg,rgba(37,99,235,0.4),rgba(14,165,233,0.2));
+  margin:0 auto;
+  display:block;
+}
+
+/* PRODUCT SECTIONS */
+.product-split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+.product-split.reverse{direction:rtl}
+.product-split.reverse > *{direction:ltr}
+.product-visual{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:48px;
+  position:relative;
+  overflow:hidden;
+}
+.product-visual::after{
+  content:'';
+  position:absolute;
+  bottom:-60px;right:-60px;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(14,165,233,0.1),transparent 70%);
+}
+.product-visual-title{
+  font-family:'Syne',sans-serif;
+  font-size:2.4rem;
+  font-weight:800;
+  letter-spacing:-1px;
+  margin-bottom:8px;
+}
+.product-visual-sub{
+  font-size:.85rem;
+  color:var(--text-muted);
+  margin-bottom:32px;
+}
+.spec-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.spec-item{
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+}
+.spec-key{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;font-family:'Syne',sans-serif;font-weight:600}
+.spec-val{font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:var(--text)}
+
+/* SERIES CARDS */
+.series-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.series-card{
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:28px;
+  background:var(--surface);
+  transition:all .3s;
+}
+.series-card:hover{border-color:rgba(37,99,235,0.35);transform:translateY(-3px)}
+.series-name{
+  font-family:'Syne',sans-serif;
+  font-size:1.8rem;
+  font-weight:800;
+  letter-spacing:-1px;
+  margin-bottom:6px;
+}
+.n-series .series-name{color:#38bdf8}
+.c-series .series-name{color:#a78bfa}
+.g-series .series-name{color:#34d399}
+.series-focus{
+  font-size:.78rem;
+  font-family:'Syne',sans-serif;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  color:var(--text-muted);
+  margin-bottom:16px;
+}
+.series-desc{font-size:.88rem;color:var(--text-muted);line-height:1.6}
+
+/* MACA SECTION */
+.maca-box{
+  background:linear-gradient(135deg,rgba(37,99,235,0.08),rgba(14,165,233,0.05));
+  border:1px solid rgba(37,99,235,0.2);
+  border-radius:24px;
+  padding:56px;
+  margin-top:64px;
+}
+.maca-grid{display:grid;grid-template-columns:1fr 2fr;gap:60px;align-items:center}
+.maca-title{
+  font-family:'Syne',sans-serif;
+  font-size:3rem;
+  font-weight:800;
+  letter-spacing:-1.5px;
+  line-height:1;
+  background:linear-gradient(135deg,#60a5fa,#38bdf8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.maca-sub{font-size:.9rem;color:var(--text-muted);margin-top:10px}
+.maca-items{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.maca-item{
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:18px 20px;
+}
+.maca-item-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;color:var(--text);margin-bottom:4px}
+.maca-item-desc{font-size:.78rem;color:var(--text-muted)}
+
+/* THETA SECTION */
+.theta-bg{
+  background:linear-gradient(135deg,rgba(37,99,235,0.06) 0%, transparent 60%);
+  position:relative;
+}
+.theta-header{
+  display:flex;
+  gap:80px;
+  align-items:flex-start;
+  margin-bottom:64px;
+}
+.theta-headline{
+  font-family:'Syne',sans-serif;
+  font-size:3.8rem;
+  font-weight:800;
+  letter-spacing:-2px;
+  line-height:1.05;
+  flex:1;
+}
+.theta-desc-col{flex:1;padding-top:8px}
+.theta-desc{font-size:1rem;color:var(--text-sub);line-height:1.8;margin-bottom:16px}
+
+/* OPTIMIZATION PILLARS */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.pillar{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:32px 28px;
+  transition:all .3s;
+}
+.pillar:hover{
+  border-color:rgba(37,99,235,0.3);
+  transform:translateY(-4px);
+}
+.pillar-num{
+  font-family:'Syne',sans-serif;
+  font-size:.75rem;
+  font-weight:700;
+  color:var(--accent2);
+  letter-spacing:1px;
+  margin-bottom:16px;
+}
+.pillar h4{
+  font-family:'Syne',sans-serif;
+  font-size:1rem;
+  font-weight:700;
+  margin-bottom:14px;
+  color:var(--text);
+}
+.pillar ul{list-style:none;padding:0}
+.pillar ul li{
+  font-size:.83rem;
+  color:var(--text-muted);
+  padding:5px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  padding-left:14px;
+  position:relative;
+}
+.pillar ul li::before{
+  content:'';
+  position:absolute;left:0;top:50%;transform:translateY(-50%);
+  width:4px;height:4px;border-radius:50%;
+  background:var(--accent2);
+  opacity:0.6;
+}
+.pillar ul li:last-child{border-bottom:none}
+
+/* SYNERGY SECTION */
+.synergy-box{
+  margin-top:64px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:48px 56px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:40px;
+  align-items:center;
+}
+.synergy-side{text-align:center}
+.synergy-logo-text{
+  font-family:'Syne',sans-serif;
+  font-size:2rem;
+  font-weight:800;
+  margin-bottom:8px;
+}
+.synergy-role{
+  font-size:.83rem;
+  color:var(--text-muted);
+  max-width:220px;
+  margin:0 auto;
+}
+.synergy-divider{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  color:var(--text-muted);
+}
+.synergy-plus{
+  font-family:'Syne',sans-serif;
+  font-size:2.5rem;
+  font-weight:800;
+  color:var(--accent2);
+}
+.synergy-result{
+  font-size:.75rem;
+  font-family:'Syne',sans-serif;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+
+/* COMPANY */
+.company-layout{
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:80px;
+  align-items:start;
+}
+.company-text-block{margin-bottom:48px}
+.company-text-block h3{
+  font-family:'Syne',sans-serif;
+  font-size:1.3rem;
+  font-weight:700;
+  margin-bottom:12px;
+  color:var(--text);
+}
+.company-text-block p{
+  font-size:.95rem;
+  color:var(--text-sub);
+  line-height:1.8;
+}
+.contact-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:36px;
+  position:sticky;
+  top:120px;
+}
+.contact-card h3{
+  font-family:'Syne',sans-serif;
+  font-size:1.2rem;
+  font-weight:700;
+  margin-bottom:24px;
+}
+.contact-item{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 0;
+  border-bottom:1px solid var(--border);
+}
+.contact-item:last-child{border:none}
+.contact-icon{font-size:1.2rem}
+.contact-detail{}
+.contact-label{font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;font-family:'Syne',sans-serif;font-weight:600;margin-bottom:2px}
+.contact-value{font-size:.92rem;color:var(--text)}
+.contact-value a{color:var(--accent2);text-decoration:none}
+.strengths-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  margin-top:16px;
+}
+.strength-item{
+  background:rgba(255,255,255,0.02);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  font-size:.85rem;
+  color:var(--text-sub);
+  line-height:1.5;
+}
+.strength-item strong{
+  display:block;
+  font-family:'Syne',sans-serif;
+  font-size:.8rem;
+  font-weight:700;
+  color:var(--accent2);
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  margin-bottom:4px;
+}
+
+/* FOOTER */
 footer{
-padding:80px 0;
-border-top:1px solid rgba(255,255,255,0.08)
+  padding:80px 0 48px;
+  border-top:1px solid var(--border);
 }
-.footer-grid{
-display:grid;
-grid-template-columns:1.5fr 1fr 1fr;
-gap:40px;
+.footer-top{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr 1fr;
+  gap:48px;
+  margin-bottom:64px;
 }
-.footer-logo{height:100px;margin-bottom:20px}
-footer a{
-display:block;
-margin-bottom:12px;
-color:#cbd5e1;
-text-decoration:none;
+.footer-brand{}
+.footer-logo{height:100px;margin-bottom:18px;display:block}
+.footer-brand-desc{font-size:.88rem;color:var(--text-muted);line-height:1.7;max-width:280px;margin-bottom:20px}
+.footer-tagline{
+  font-family:'Syne',sans-serif;
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--accent2);
 }
-@media(max-width:980px){
-.navbar{flex-direction:column;align-items:flex-start;gap:20px}
-nav{flex-wrap:wrap;gap:18px}
-.hero-grid,.cards,.footer-grid{grid-template-columns:1fr}
-.hero h1{font-size:3rem}
-.hero{padding-top:200px}
-.logo img{height:56px}
-.section-title{font-size:2.2rem}
-.stack-step{font-size:1.3rem}
-.hero-buttons .btn{width:100%;text-align:center}
+.footer-col h4{
+  font-family:'Syne',sans-serif;
+  font-size:.75rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1.5px;
+  color:var(--text-muted);
+  margin-bottom:20px;
 }
-section{
-    scroll-margin-top:140px;
+.footer-col a{
+  display:block;
+  font-size:.88rem;
+  color:var(--text-muted);
+  text-decoration:none;
+  padding:5px 0;
+  transition:color .2s;
+}
+.footer-col a:hover{color:var(--text)}
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:32px;
+  border-top:1px solid var(--border);
+  font-size:.82rem;
+  color:var(--text-muted);
+}
+
+/* LANG TOGGLE */
+.lang-en,.lang-ko{display:inline}
+.lang-ko-block,.lang-en-block{display:block}
+
+/* SCROLL ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.fade-up{
+  opacity:0;
+  animation:fadeUp .7s ease forwards;
+}
+.fade-up-delay-1{animation-delay:.1s}
+.fade-up-delay-2{animation-delay:.2s}
+.fade-up-delay-3{animation-delay:.3s}
+
+section{scroll-margin-top:100px}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .pillars{grid-template-columns:repeat(2,1fr)}
+  .theta-header{flex-direction:column;gap:24px}
+}
+@media(max-width:900px){
+  .hero-layout,.product-split,.company-layout,.footer-top{grid-template-columns:1fr}
+  .product-split.reverse{direction:ltr}
+  .cards-3,.cards-2,.series-cards{grid-template-columns:1fr}
+  .hero h1{font-size:3rem}
+  .section-title{font-size:2.2rem}
+  .pillars{grid-template-columns:1fr}
+  .synergy-box{grid-template-columns:1fr;text-align:center}
+  .maca-grid{grid-template-columns:1fr}
+  .theta-headline{font-size:2.8rem}
+  .hero{padding:160px 0 100px}
+  .container{padding:0 24px}
+  .navbar{flex-direction:column;align-items:flex-start;gap:16px}
+  nav{flex-wrap:wrap;gap:16px}
+  .logo img{height:44px}
+  .stack-layer{grid-template-columns:1fr}
+  .stack-label{justify-content:flex-start;padding:0 0 4px 0;font-size:.7rem}
 }
 </style>
 </head>
 <body>
+
 <header>
 <div class="container navbar">
-<div class="logo">
-<img src="logo.png" alt="CertiSilicon Logo">
-</div>
-<nav>
-<a href="#compute">Compute</a>
-<a href="#gpu">GPU Platform</a>
-<a href="#optimization">Optimization</a>
-<a href="#datacenter">Datacenter</a>
-<a href="#ecosystem">Ecosystem</a>
-<a href="#company">Company</a>
-</nav>
-<div class="lang-switch">
-<button onclick="setLanguage('en')">EN</button>
-<button onclick="setLanguage('ko')">KR</button>
-</div>
+  <div class="logo">
+    <img src="logo.png" alt="CertiSilicon">
+  </div>
+  <nav>
+    <a href="#metax"><span class="lang-en">MetaX GPU</span><span class="lang-ko">MetaX GPU</span></a>
+    <a href="#theta"><span class="lang-en">θ-Kernel</span><span class="lang-ko">θ-Kernel</span></a>
+    <a href="#ecosystem"><span class="lang-en">Ecosystem</span><span class="lang-ko">생태계</span></a>
+    <a href="#company"><span class="lang-en">Company</span><span class="lang-ko">회사소개</span></a>
+  </nav>
+  <div class="lang-switch">
+    <button id="btn-en" onclick="setLang('en')" class="active">EN</button>
+    <button id="btn-ko" onclick="setLang('ko')">KR</button>
+  </div>
 </div>
 </header>
 
+<!-- HERO -->
 <section class="hero">
-<div class="container hero-grid">
-<div>
-<div class="eyebrow">AI INFRASTRUCTURE TECHNOLOGY</div>
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="container hero-layout">
+    <div>
+      <div class="eyebrow">AI Infrastructure Technology</div>
+      <h1 class="fade-up">
+        <span class="lang-en"><span class="grad">Optimizing AI</span><br>Infrastructure for<br>the Next-Gen<br>GPU Ecosystem</span>
+        <span class="lang-ko"><span class="grad">AI 인프라</span>를<br>최적화하다<br>차세대 GPU<br>생태계를 위해</span>
+      </h1>
+      <p class="hero-desc fade-up fade-up-delay-1">
+        <span class="lang-en">CertiSilicon delivers enterprise AI infrastructure optimization built on MetaX GPU platforms and θ-Kernel software — bridging the gap between cutting-edge GPU hardware and maximum operational efficiency.</span>
+        <span class="lang-ko">CertiSilicon은 MetaX GPU 플랫폼과 θ-Kernel 소프트웨어를 기반으로 엔터프라이즈 AI 인프라 최적화를 제공합니다. 첨단 GPU 하드웨어와 최대 운영 효율성 사이의 격차를 연결합니다.</span>
+      </p>
+      <div class="hero-ctas fade-up fade-up-delay-2">
+        <a href="#metax" class="btn btn-primary">
+          <span class="lang-en">Explore MetaX GPU →</span>
+          <span class="lang-ko">MetaX GPU 보기 →</span>
+        </a>
+        <a href="#theta" class="btn btn-ghost">
+          <span class="lang-en">θ-Kernel Software</span>
+          <span class="lang-ko">θ-Kernel 소프트웨어</span>
+        </a>
+      </div>
+      <div class="hero-stats fade-up fade-up-delay-3">
+        <div class="stat-item">
+          <div class="stat-num">Full</div>
+          <div class="stat-label lang-en">Stack AI Computing</div>
+          <div class="stat-label lang-ko">풀스택 AI 컴퓨팅</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3</div>
+          <div class="stat-label lang-en">GPU Series</div>
+          <div class="stat-label lang-ko">GPU 제품군</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">MACA</div>
+          <div class="stat-label lang-en">Software Ecosystem</div>
+          <div class="stat-label lang-ko">소프트웨어 생태계</div>
+        </div>
+      </div>
+    </div>
 
-<h1>
-<span class="lang-en">Advanced AI Infrastructure for the Next Generation GPU Ecosystem</span>
-<span class="lang-ko">차세대 GPU 생태계를 위한 AI 인프라 플랫폼</span>
-</h1>
+    <div class="hero-panel fade-up fade-up-delay-1">
+      <div class="panel-title lang-en">AI Infrastructure Stack</div>
+      <div class="panel-title lang-ko">AI 인프라 스택</div>
 
-<p>
-<span class="lang-en">Enterprise AI infrastructure integrating GPU platforms, semiconductor architecture, AI runtime acceleration, and intelligent optimization technologies.</span>
-<span class="lang-ko">GPU 플랫폼, 반도체 아키텍처, AI 런타임 가속 및 지능형 최적화 기술을 통합한 엔터프라이즈 AI 인프라 플랫폼입니다.</span>
-</p>
-
-<div class="hero-buttons">
-<a href="#compute" class="btn primary">
-<span class="lang-en">Explore Compute</span>
-<span class="lang-ko">컴퓨트 보기</span>
-</a>
-
-<a href="#company" class="btn secondary">
-<span class="lang-en">Company</span>
-<span class="lang-ko">회사소개</span>
-</a>
-</div>
-</div>
-
-<div class="hero-card">
-<div class="hero-item">
-<h3>MetaX GPU</h3>
-<span class="lang-en">AI GPU Infrastructure</span>
-<span class="lang-ko">AI GPU 인프라</span>
-</div>
-
-<div class="hero-item">
-<h3>θ-Kernel</h3>
-<span class="lang-en">Optimization Layer</span>
-<span class="lang-ko">최적화 레이어</span>
-</div>
-
-<div class="hero-item">
-<h3>AI Runtime</h3>
-<span class="lang-en">Inference Acceleration</span>
-<span class="lang-ko">추론 가속</span>
-</div>
-
-<div class="hero-item">
-<h3>Enterprise AI</h3>
-<span class="lang-en">Hyperscale Infrastructure</span>
-<span class="lang-ko">하이퍼스케일 인프라</span>
-</div>
-</div>
-</div>
+      <div class="panel-item">
+        <div class="panel-icon">🔲</div>
+        <div class="panel-item-text">
+          <div class="panel-item-title">MetaX GPU Platform</div>
+          <div class="panel-item-sub lang-en">N-Series · C-Series · G-Series</div>
+          <div class="panel-item-sub lang-ko">N-Series · C-Series · G-Series</div>
+        </div>
+      </div>
+      <div class="panel-item">
+        <div class="panel-icon">⚙️</div>
+        <div class="panel-item-text">
+          <div class="panel-item-title">θ-Kernel Optimization SW</div>
+          <div class="panel-item-sub lang-en">GPU Utilization & Inference Efficiency</div>
+          <div class="panel-item-sub lang-ko">GPU 활용률 및 추론 효율 최적화</div>
+        </div>
+      </div>
+      <div class="panel-item">
+        <div class="panel-icon">🚀</div>
+        <div class="panel-item-text">
+          <div class="panel-item-title">MACA Ecosystem</div>
+          <div class="panel-item-sub lang-en">Runtime · Compiler · SDK · Driver</div>
+          <div class="panel-item-sub lang-ko">런타임 · 컴파일러 · SDK · 드라이버</div>
+        </div>
+      </div>
+      <div class="panel-item">
+        <div class="panel-icon">🏢</div>
+        <div class="panel-item-text">
+          <div class="panel-item-title">AI Datacenter Infrastructure</div>
+          <div class="panel-item-sub lang-en">GPU Clusters · LLM · Enterprise AI</div>
+          <div class="panel-item-sub lang-ko">GPU 클러스터 · LLM · 엔터프라이즈 AI</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section" id="compute">
-<div class="container">
-<h2 class="section-title">
-<span class="lang-en">Advanced AI Compute Architecture</span>
-<span class="lang-ko">차세대 AI 컴퓨트 아키텍처</span>
-</h2>
+<!-- STACK SECTION -->
+<section class="section stack-section" id="stack">
+  <div class="container">
+    <div class="section-tag lang-en">Architecture</div>
+    <div class="section-tag lang-ko">아키텍처</div>
+    <h2 class="section-title">
+      <span class="lang-en">Full-Stack AI Compute Architecture</span>
+      <span class="lang-ko">풀스택 AI 컴퓨트 아키텍처</span>
+    </h2>
+    <p class="section-sub">
+      <span class="lang-en">From silicon to software to datacenter — a vertically integrated AI infrastructure platform designed for enterprise-scale deployment.</span>
+      <span class="lang-ko">실리콘부터 소프트웨어, 데이터센터까지 — 엔터프라이즈 규모 구축을 위한 수직 통합 AI 인프라 플랫폼.</span>
+    </p>
 
-<p class="section-sub">
-<span class="lang-en">From Semiconductor Architecture to AI Infrastructure Optimization.</span>
-<span class="lang-ko">반도체 아키텍처부터 AI 인프라 최적화까지.</span>
-</p>
-
-<div class="stack-box">
-<div class="stack-step">
-<span class="lang-en">MetaX GPU Hardware</span>
-<span class="lang-ko">MetaX GPU 하드웨어</span>
-</div>
-<div class="arrow">↓</div>
-<div class="stack-step">
-<span class="lang-en">Semiconductor Architecture</span>
-<span class="lang-ko">반도체 아키텍처</span>
-</div>
-<div class="arrow">↓</div>
-<div class="stack-step">
-<span class="lang-en">θ-Kernel Optimization Layer</span>
-<span class="lang-ko">θ-Kernel 최적화 레이어</span>
-</div>
-<div class="arrow">↓</div>
-<div class="stack-step">
-<span class="lang-en">Enterprise AI Runtime</span>
-<span class="lang-ko">엔터프라이즈 AI 런타임</span>
-</div>
-<div class="arrow">↓</div>
-<div class="stack-step">
-<span class="lang-en">AI Datacenter Infrastructure</span>
-<span class="lang-ko">AI 데이터센터 인프라</span>
-</div>
-</div>
-</div>
+    <div class="stack-visual">
+      <div class="stack-layers">
+        <div class="stack-block">
+          <div>
+            <div class="stack-block-title lang-en">MetaX GPU Hardware</div>
+            <div class="stack-block-title lang-ko">MetaX GPU 하드웨어</div>
+            <div class="stack-block-desc lang-en">N-Series inference · C-Series training · G-Series visualization</div>
+            <div class="stack-block-desc lang-ko">N-Series 추론 · C-Series 학습 · G-Series 시각화</div>
+          </div>
+          <span class="stack-block-badge badge-hw">HARDWARE</span>
+        </div>
+        <span class="stack-connector"></span>
+        <div class="stack-block">
+          <div>
+            <div class="stack-block-title">MACA Ecosystem</div>
+            <div class="stack-block-desc lang-en">Runtime · Compiler · SDK · Driver — CUDA-compatible software platform</div>
+            <div class="stack-block-desc lang-ko">런타임 · 컴파일러 · SDK · 드라이버 — CUDA 호환 소프트웨어 플랫폼</div>
+          </div>
+          <span class="stack-block-badge badge-sw">SDK</span>
+        </div>
+        <span class="stack-connector"></span>
+        <div class="stack-block">
+          <div>
+            <div class="stack-block-title">θ-Kernel Optimization Layer</div>
+            <div class="stack-block-desc lang-en">GPU utilization · Inference acceleration · Power efficiency · Multi-GPU coordination</div>
+            <div class="stack-block-desc lang-ko">GPU 활용률 · 추론 가속 · 전력 효율 · 멀티GPU 조정</div>
+          </div>
+          <span class="stack-block-badge badge-sw">OPTIMIZE</span>
+        </div>
+        <span class="stack-connector"></span>
+        <div class="stack-block">
+          <div>
+            <div class="stack-block-title lang-en">Enterprise AI Runtime</div>
+            <div class="stack-block-title lang-ko">엔터프라이즈 AI 런타임</div>
+            <div class="stack-block-desc lang-en">LLM inference · AI training · Batch processing</div>
+            <div class="stack-block-desc lang-ko">LLM 추론 · AI 학습 · 배치 처리</div>
+          </div>
+          <span class="stack-block-badge badge-rt">RUNTIME</span>
+        </div>
+        <span class="stack-connector"></span>
+        <div class="stack-block">
+          <div>
+            <div class="stack-block-title lang-en">AI Datacenter Infrastructure</div>
+            <div class="stack-block-title lang-ko">AI 데이터센터 인프라</div>
+            <div class="stack-block-desc lang-en">GPU clusters · Hyperscale deployment · Enterprise AI operations</div>
+            <div class="stack-block-desc lang-ko">GPU 클러스터 · 하이퍼스케일 구축 · 엔터프라이즈 AI 운영</div>
+          </div>
+          <span class="stack-block-badge badge-infra">INFRA</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section" id="gpu">
-<div class="container">
-<h2 class="section-title">
-<span class="lang-en">MetaX GPU Platform</span>
-<span class="lang-ko">MetaX GPU 플랫폼</span>
-</h2>
+<!-- METAX GPU -->
+<section class="section" id="metax">
+  <div class="container">
+    <div class="section-tag">MetaX GPU Platform</div>
+    <h2 class="section-title">
+      <span class="lang-en">AI GPU Infrastructure<br>Built for Enterprise Scale</span>
+      <span class="lang-ko">엔터프라이즈 규모를 위한<br>AI GPU 인프라</span>
+    </h2>
+    <p class="section-sub">
+      <span class="lang-en">MetaX is a full-stack AI computing company founded in Shanghai in 2020, led by engineers from AMD. Recognized as one of China's most promising NVIDIA-alternative GPU providers, MetaX delivers end-to-end AI compute from silicon to datacenter.</span>
+      <span class="lang-ko">MetaX는 AMD 출신 엔지니어들이 2020년 상하이에서 설립한 풀스택 AI 컴퓨팅 기업입니다. 중국 내 NVIDIA 대체 GPU 기업 중 가장 주목받는 기업으로, 실리콘부터 데이터센터까지 엔드투엔드 AI 컴퓨팅을 제공합니다.</span>
+    </p>
 
-<p class="section-sub">
-<span class="lang-en">Full-stack GPU infrastructure optimized for enterprise AI computing and hyperscale inference environments.</span>
-<span class="lang-ko">엔터프라이즈 AI 컴퓨팅 및 하이퍼스케일 추론 환경에 최적화된 풀스택 GPU 인프라입니다.</span>
-</p>
+    <!-- Series Cards -->
+    <div class="series-cards">
+      <div class="series-card n-series">
+        <div class="series-name">N-Series</div>
+        <div class="series-focus lang-en">AI Inference Optimized</div>
+        <div class="series-focus lang-ko">AI 추론 최적화</div>
+        <p class="series-desc lang-en">High-efficiency GPU architecture built for enterprise AI inference workloads. Optimized for scalable LLM deployment, low-latency response, and maximum throughput per watt.</p>
+        <p class="series-desc lang-ko">엔터프라이즈 AI 추론 워크로드를 위한 고효율 GPU 아키텍처. 확장 가능한 LLM 배포, 저지연 응답, 와트당 최대 처리량에 최적화되어 있습니다.</p>
+      </div>
+      <div class="series-card c-series">
+        <div class="series-name">C-Series</div>
+        <div class="series-focus lang-en">Large-Scale AI Training</div>
+        <div class="series-focus lang-ko">대규모 AI 학습</div>
+        <p class="series-desc lang-en">Purpose-built for large language model training and demanding AI research workloads. High memory bandwidth and multi-GPU scaling for hyperscale training clusters.</p>
+        <p class="series-desc lang-ko">대규모 언어 모델 학습과 AI 연구 워크로드를 위해 특별 설계되었습니다. 하이퍼스케일 학습 클러스터를 위한 높은 메모리 대역폭과 멀티GPU 확장.</p>
+      </div>
+      <div class="series-card g-series">
+        <div class="series-name">G-Series</div>
+        <div class="series-focus lang-en">Graphics & Visualization</div>
+        <div class="series-focus lang-ko">그래픽 및 시각화</div>
+        <p class="series-desc lang-en">Professional-grade GPU solutions for rendering, visualization, and mixed graphics and compute workloads in enterprise environments.</p>
+        <p class="series-desc lang-ko">렌더링, 시각화, 엔터프라이즈 환경에서의 그래픽 및 컴퓨팅 혼합 워크로드를 위한 전문가용 GPU 솔루션.</p>
+      </div>
+    </div>
 
-<div class="cards">
-<div class="card">
-<h3>
-<span class="lang-en">AI Training GPU</span>
-<span class="lang-ko">AI 학습 GPU</span>
-</h3>
-<p>
-<span class="lang-en">GPU architecture optimized for large-scale AI training workloads.</span>
-<span class="lang-ko">대규모 AI 학습 워크로드에 최적화된 GPU 아키텍처입니다.</span>
-</p>
-</div>
-
-<div class="card">
-<h3>
-<span class="lang-en">AI Inference GPU</span>
-<span class="lang-ko">AI 추론 GPU</span>
-</h3>
-<p>
-<span class="lang-en">Enterprise AI inference platform for scalable deployment.</span>
-<span class="lang-ko">확장 가능한 엔터프라이즈 AI 추론 플랫폼입니다.</span>
-</p>
-</div>
-
-<div class="card">
-<h3>MACA Ecosystem</h3>
-<p>
-<span class="lang-en">CUDA-like GPU software ecosystem including runtime, compiler, and SDK.</span>
-<span class="lang-ko">런타임, 컴파일러 및 SDK를 포함한 CUDA 유사 GPU 소프트웨어 생태계입니다.</span>
-</p>
-</div>
-</div>
-</div>
+    <!-- MACA -->
+    <div class="maca-box">
+      <div class="maca-grid">
+        <div>
+          <div class="maca-title">MACA</div>
+          <div class="maca-sub lang-en">MetaX GPU Software Ecosystem</div>
+          <div class="maca-sub lang-ko">MetaX GPU 소프트웨어 생태계</div>
+        </div>
+        <div>
+          <p style="font-size:.92rem;color:var(--text-sub);margin-bottom:24px;line-height:1.8">
+            <span class="lang-en">MACA is MetaX's proprietary GPU software platform, designed as a CUDA-compatible ecosystem covering the full software stack for AI development and deployment.</span>
+            <span class="lang-ko">MACA는 MetaX의 독자적인 GPU 소프트웨어 플랫폼으로, AI 개발 및 배포를 위한 전체 소프트웨어 스택을 포괄하는 CUDA 호환 생태계입니다.</span>
+          </p>
+          <div class="maca-items">
+            <div class="maca-item">
+              <div class="maca-item-title lang-en">Runtime</div>
+              <div class="maca-item-title lang-ko">런타임</div>
+              <div class="maca-item-desc lang-en">GPU execution runtime & memory management</div>
+              <div class="maca-item-desc lang-ko">GPU 실행 런타임 및 메모리 관리</div>
+            </div>
+            <div class="maca-item">
+              <div class="maca-item-title">Compiler</div>
+              <div class="maca-item-desc lang-en">GPU kernel compilation & optimization</div>
+              <div class="maca-item-desc lang-ko">GPU 커널 컴파일 및 최적화</div>
+            </div>
+            <div class="maca-item">
+              <div class="maca-item-title">AI SDK</div>
+              <div class="maca-item-desc lang-en">Deep learning libraries & frameworks</div>
+              <div class="maca-item-desc lang-ko">딥러닝 라이브러리 및 프레임워크</div>
+            </div>
+            <div class="maca-item">
+              <div class="maca-item-title">Driver</div>
+              <div class="maca-item-desc lang-en">Hardware abstraction & OS integration</div>
+              <div class="maca-item-desc lang-ko">하드웨어 추상화 및 OS 통합</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section" id="optimization">
-<div class="container">
-<h2 class="section-title">
-<span class="lang-en">θ-Kernel Optimization Software</span>
-<span class="lang-ko">θ-Kernel 최적화 소프트웨어</span>
-</h2>
+<!-- THETA KERNEL -->
+<section class="section theta-bg" id="theta">
+  <div class="container">
+    <div class="section-tag">θ-Kernel</div>
+    <div class="theta-header">
+      <h2 class="theta-headline">
+        <span class="lang-en">GPU Optimization<br><span style="color:var(--accent2)">Software</span><br>for AI Infra</span>
+        <span class="lang-ko">AI 인프라를 위한<br><span style="color:var(--accent2)">GPU 최적화</span><br>소프트웨어</span>
+      </h2>
+      <div class="theta-desc-col">
+        <p class="theta-desc lang-en">θ-Kernel is an AI Infrastructure Optimization Software platform targeting GPU Resource Optimization, AI Inference Efficiency, and Datacenter operational costs.</p>
+        <p class="theta-desc lang-ko">θ-Kernel은 GPU 자원 최적화, AI 추론 효율성, 데이터센터 운영 비용을 목표로 하는 AI 인프라 최적화 소프트웨어 플랫폼입니다.</p>
+        <p class="theta-desc lang-en">The core insight: today's AI industry suffers more from GPU inefficiency than GPU shortage. Low utilization, memory bottlenecks, power waste, and inference latency are the real barriers — θ-Kernel addresses them all.</p>
+        <p class="theta-desc lang-ko">핵심 인사이트: 오늘날 AI 산업은 GPU 부족보다 GPU 비효율 운영 문제가 더 심각합니다. θ-Kernel은 낮은 활용률, 메모리 병목, 전력 낭비, 추론 지연 등 모든 문제를 해결합니다.</p>
+      </div>
+    </div>
 
-<p class="section-sub">
-<span class="lang-en">Maximizing AI infrastructure efficiency through intelligent GPU optimization technologies.</span>
-<span class="lang-ko">지능형 GPU 최적화 기술을 통한 AI 인프라 효율 극대화.</span>
-</p>
-
-<div class="cards">
-<div class="card">
-<h3>
-<span class="lang-en">GPU Optimization</span>
-<span class="lang-ko">GPU 최적화</span>
-</h3>
-<p>
-<span class="lang-en">Advanced GPU resource optimization technologies for enterprise AI infrastructure.</span>
-<span class="lang-ko">엔터프라이즈 AI 인프라를 위한 GPU 자원 최적화 기술.</span>
-</p>
-</div>
-
-<div class="card">
-<h3>
-<span class="lang-en">AI Runtime Acceleration</span>
-<span class="lang-ko">AI 런타임 가속</span>
-</h3>
-<p>
-<span class="lang-en">AI runtime acceleration technologies designed to improve throughput and utilization.</span>
-<span class="lang-ko">처리량과 활용률 향상을 위한 AI 런타임 가속 기술.</span>
-</p>
-</div>
-
-<div class="card">
-<h3>
-<span class="lang-en">Datacenter Efficiency</span>
-<span class="lang-ko">데이터센터 효율</span>
-</h3>
-<p>
-<span class="lang-en">Reducing AI datacenter operating costs through intelligent optimization.</span>
-<span class="lang-ko">지능형 최적화를 통한 AI 데이터센터 운영비 절감.</span>
-</p>
-</div>
-</div>
-</div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">01</div>
+        <h4>
+          <span class="lang-en">GPU Kernel Optimization</span>
+          <span class="lang-ko">GPU 커널 최적화</span>
+        </h4>
+        <ul>
+          <li><span class="lang-en">Memory access optimization</span><span class="lang-ko">메모리 접근 최적화</span></li>
+          <li><span class="lang-en">Tensor Scheduling</span><span class="lang-ko">텐서 스케줄링</span></li>
+          <li><span class="lang-en">Parallel Execution Tuning</span><span class="lang-ko">병렬 실행 튜닝</span></li>
+          <li><span class="lang-en">GPU Occupancy Optimization</span><span class="lang-ko">GPU 점유율 최적화</span></li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">02</div>
+        <h4>
+          <span class="lang-en">AI Inference Optimization</span>
+          <span class="lang-ko">AI 추론 최적화</span>
+        </h4>
+        <ul>
+          <li><span class="lang-en">Batch Optimization</span><span class="lang-ko">배치 최적화</span></li>
+          <li><span class="lang-en">Memory Reduction</span><span class="lang-ko">메모리 절감</span></li>
+          <li><span class="lang-en">Latency Reduction</span><span class="lang-ko">지연 시간 감소</span></li>
+          <li><span class="lang-en">Throughput Improvement</span><span class="lang-ko">처리량 향상</span></li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">03</div>
+        <h4>
+          <span class="lang-en">Datacenter Power Optimization</span>
+          <span class="lang-ko">데이터센터 전력 최적화</span>
+        </h4>
+        <ul>
+          <li><span class="lang-en">GPU Scheduling</span><span class="lang-ko">GPU 스케줄링</span></li>
+          <li><span class="lang-en">Workload Balancing</span><span class="lang-ko">워크로드 밸런싱</span></li>
+          <li><span class="lang-en">Dynamic Optimization</span><span class="lang-ko">동적 최적화</span></li>
+          <li><span class="lang-en">OpEx Reduction</span><span class="lang-ko">운영비 절감</span></li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">04</div>
+        <h4>
+          <span class="lang-en">Multi-GPU Optimization</span>
+          <span class="lang-ko">멀티GPU 최적화</span>
+        </h4>
+        <ul>
+          <li><span class="lang-en">Tensor Parallel</span><span class="lang-ko">텐서 병렬화</span></li>
+          <li><span class="lang-en">Pipeline Parallel</span><span class="lang-ko">파이프라인 병렬화</span></li>
+          <li><span class="lang-en">GPU Communication Optimization</span><span class="lang-ko">GPU 통신 최적화</span></li>
+          <li><span class="lang-en">Cluster Efficiency</span><span class="lang-ko">클러스터 효율</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="section" id="datacenter">
-<div class="container">
-<h2 class="section-title">
-<span class="lang-en">AI Datacenter Infrastructure</span>
-<span class="lang-ko">AI 데이터센터 인프라</span>
-</h2>
-
-<p class="section-sub">
-<span class="lang-en">Enterprise AI infrastructure technologies supporting GPU clusters, LLM inference, and hyperscale AI deployment.</span>
-<span class="lang-ko">GPU 클러스터, LLM 추론 및 하이퍼스케일 AI 구축을 지원하는 엔터프라이즈 AI 인프라 기술.</span>
-</p>
-
-<div class="blue-box">
-<h3 style="font-size:2rem;margin-bottom:20px">
-<span class="lang-en">AI Infrastructure Stack</span>
-<span class="lang-ko">AI 인프라 스택</span>
-</h3>
-
-<p style="color:#cbd5e1">
-<span class="lang-en">MetaX GPU Cluster → θ-Kernel Optimization Layer → Enterprise AI Runtime → Hyperscale AI Infrastructure</span>
-<span class="lang-ko">MetaX GPU 클러스터 → θ-Kernel 최적화 레이어 → 엔터프라이즈 AI 런타임 → 하이퍼스케일 AI 인프라</span>
-</p>
-</div>
-</div>
-</section>
-
+<!-- SYNERGY / ECOSYSTEM -->
 <section class="section" id="ecosystem">
-<div class="container">
-<h2 class="section-title">
-<span class="lang-en">AI Infrastructure Ecosystem</span>
-<span class="lang-ko">AI 인프라 생태계</span>
-</h2>
+  <div class="container">
+    <div class="section-tag lang-en">Ecosystem Synergy</div>
+    <div class="section-tag lang-ko">생태계 시너지</div>
+    <h2 class="section-title">
+      <span class="lang-en">MetaX + θ-Kernel:<br>The Complete AI Infrastructure</span>
+      <span class="lang-ko">MetaX + θ-Kernel:<br>완전한 AI 인프라</span>
+    </h2>
+    <p class="section-sub">
+      <span class="lang-en">MetaX provides the GPU hardware platform. θ-Kernel provides the GPU efficiency optimization layer. Together, they deliver unmatched AI infrastructure performance for enterprise deployments.</span>
+      <span class="lang-ko">MetaX는 GPU 하드웨어 플랫폼을, θ-Kernel은 GPU 효율 최적화 레이어를 제공합니다. 함께, 엔터프라이즈 배포를 위한 탁월한 AI 인프라 성능을 제공합니다.</span>
+    </p>
 
-<p class="section-sub">
-<span class="lang-en">Building the next-generation GPU optimization ecosystem integrating MetaX GPU infrastructure and θ-Kernel runtime technologies.</span>
-<span class="lang-ko">MetaX GPU 인프라와 θ-Kernel 런타임 기술을 통합한 차세대 GPU 최적화 생태계 구축.</span>
-</p>
-</div>
+    <div class="synergy-box">
+      <div class="synergy-side">
+        <div class="synergy-logo-text" style="color:#38bdf8">MetaX GPU</div>
+        <div class="synergy-role lang-en">GPU Hardware Platform — AI Training, Inference, Visualization with MACA ecosystem</div>
+        <div class="synergy-role lang-ko">GPU 하드웨어 플랫폼 — MACA 생태계로 AI 학습, 추론, 시각화</div>
+      </div>
+      <div class="synergy-divider">
+        <div class="synergy-plus">+</div>
+        <div class="synergy-result lang-en">Synergy</div>
+        <div class="synergy-result lang-ko">시너지</div>
+      </div>
+      <div class="synergy-side">
+        <div class="synergy-logo-text" style="color:#a78bfa">θ-Kernel SW</div>
+        <div class="synergy-role lang-en">GPU Efficiency Optimization Layer — Utilization, power, inference, multi-GPU performance</div>
+        <div class="synergy-role lang-ko">GPU 효율 최적화 레이어 — 활용률, 전력, 추론, 멀티GPU 성능 최적화</div>
+      </div>
+    </div>
+
+    <div class="cards-3" style="margin-top:32px">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>
+          <span class="lang-en">GPU Utilization ↑</span>
+          <span class="lang-ko">GPU 활용률 향상</span>
+        </h3>
+        <p class="lang-en">θ-Kernel's optimization layer fills the efficiency gap in China's GPU ecosystem, significantly improving utilization rates on MetaX hardware.</p>
+        <p class="lang-ko">θ-Kernel의 최적화 레이어가 중국 GPU 생태계의 효율성 격차를 메우고, MetaX 하드웨어의 활용률을 크게 향상시킵니다.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧠</div>
+        <h3>
+          <span class="lang-en">Inference Efficiency ↑</span>
+          <span class="lang-ko">추론 효율 향상</span>
+        </h3>
+        <p class="lang-en">Combined inference optimization delivers lower latency and higher throughput for LLM workloads across MetaX N-Series GPU clusters.</p>
+        <p class="lang-ko">결합된 추론 최적화로 MetaX N-Series GPU 클러스터에서 LLM 워크로드의 낮은 지연과 높은 처리량을 실현합니다.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>
+          <span class="lang-en">Power Optimization ↓</span>
+          <span class="lang-ko">전력 최적화</span>
+        </h3>
+        <p class="lang-en">Dynamic workload balancing and power optimization reduce AI datacenter operating costs without compromising performance.</p>
+        <p class="lang-ko">동적 워크로드 밸런싱과 전력 최적화로 성능 저하 없이 AI 데이터센터 운영 비용을 절감합니다.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- COMPANY -->
 <section class="section" id="company">
-<div class="container">
-<h2 class="section-title">
-<span class="lang-en">Company</span>
-<span class="lang-ko">회사소개</span>
-</h2>
+  <div class="container">
+    <div class="section-tag lang-en">Company</div>
+    <div class="section-tag lang-ko">회사소개</div>
+    <h2 class="section-title">
+      <span class="lang-en">CertiSilicon</span>
+      <span class="lang-ko">CertiSilicon</span>
+    </h2>
 
-<p class="section-sub">
-<span class="lang-en">AI Infrastructure Technology Company.</span>
-<span class="lang-ko">AI 인프라 기술 기업.</span>
-</p>
+    <div class="company-layout">
+      <div>
+        <div class="company-text-block">
+          <h3>
+            <span class="lang-en">Leading AI, Together</span>
+            <span class="lang-ko">함께 AI를 이끌다</span>
+          </h3>
+          <p class="lang-en">CertiSilicon is an AI Infrastructure Technology company focused on maximizing the potential of next-generation GPU ecosystems. We bridge the gap between cutting-edge GPU hardware and enterprise AI operational efficiency through deep integration of MetaX GPU platforms and θ-Kernel optimization software.</p>
+          <p class="lang-ko">CertiSilicon은 차세대 GPU 생태계의 잠재력을 극대화하는 AI 인프라 기술 기업입니다. MetaX GPU 플랫폼과 θ-Kernel 최적화 소프트웨어의 깊은 통합을 통해 첨단 GPU 하드웨어와 엔터프라이즈 AI 운영 효율성 사이의 격차를 연결합니다.</p>
+        </div>
 
-<div class="cards">
-<div class="card">
-<h3>
-<span class="lang-en">Core Technologies</span>
-<span class="lang-ko">핵심 기술</span>
-</h3>
-<p>
-<span class="lang-en">MetaX GPU, θ-Kernel Optimization SW, AI Runtime Acceleration.</span>
-<span class="lang-ko">MetaX GPU, θ-Kernel 최적화 SW, AI 런타임 가속 기술.</span>
-</p>
-</div>
+        <div class="company-text-block">
+          <h3>
+            <span class="lang-en">Vision</span>
+            <span class="lang-ko">비전</span>
+          </h3>
+          <p class="lang-en">To become the definitive AI infrastructure optimization platform for the next-generation GPU ecosystem — enabling enterprises to extract maximum value from their AI compute investments through intelligent hardware-software co-optimization.</p>
+          <p class="lang-ko">지능형 하드웨어-소프트웨어 공동 최적화를 통해 AI 컴퓨팅 투자에서 최대 가치를 추출할 수 있도록 함으로써, 차세대 GPU 생태계를 위한 결정적인 AI 인프라 최적화 플랫폼이 되는 것.</p>
+        </div>
 
-<div class="card">
-<h3>
-<span class="lang-en">Vision</span>
-<span class="lang-ko">비전</span>
-</h3>
-<p>
-<span class="lang-en">Optimizing AI Compute Infrastructure for the Next Generation GPU Ecosystem.</span>
-<span class="lang-ko">차세대 GPU 생태계를 위한 AI 컴퓨트 인프라 최적화.</span>
-</p>
-</div>
+        <div class="company-text-block">
+          <h3>
+            <span class="lang-en">Core Strengths</span>
+            <span class="lang-ko">핵심 강점</span>
+          </h3>
+          <div class="strengths-grid">
+            <div class="strength-item">
+              <strong lang-class="lang-en">Full Stack</strong>
+              <span class="lang-en">GPU + SDK + Runtime integrated approach from hardware to hyperscale</span>
+              <span class="lang-ko">하드웨어부터 하이퍼스케일까지 GPU + SDK + 런타임 통합 접근</span>
+            </div>
+            <div class="strength-item">
+              <strong>Datacenter Focus</strong>
+              <span class="lang-en">Specialized AI datacenter strategy with real GPU cluster operation experience</span>
+              <span class="lang-ko">실제 GPU 클러스터 운영 경험을 바탕으로 한 AI 데이터센터 특화 전략</span>
+            </div>
+            <div class="strength-item">
+              <strong>Optimization Layer</strong>
+              <span class="lang-en">θ-Kernel fills critical efficiency gaps in emerging GPU ecosystems</span>
+              <span class="lang-ko">θ-Kernel이 신흥 GPU 생태계의 중요한 효율성 격차를 해소</span>
+            </div>
+            <div class="strength-item">
+              <strong>Market Timing</strong>
+              <span class="lang-en">Positioned for China's AI semiconductor localization wave</span>
+              <span class="lang-ko">중국 AI 반도체 국산화 물결에 최적의 포지셔닝</span>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<div class="card">
-<h3>Contact</h3>
-<p>andy@certisilicon.com</p>
-</div>
-</div>
-</div>
+      <div>
+        <div class="contact-card">
+          <h3>Contact</h3>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-detail">
+              <div class="contact-label">Email</div>
+              <div class="contact-value"><a href="mailto:andy@certisilicon.com">andy@certisilicon.com</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🏢</div>
+            <div class="contact-detail">
+              <div class="contact-label lang-en">Company</div>
+              <div class="contact-label lang-ko">회사</div>
+              <div class="contact-value">CertiSilicon</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🎯</div>
+            <div class="contact-detail">
+              <div class="contact-label lang-en">Focus</div>
+              <div class="contact-label lang-ko">집중 분야</div>
+              <div class="contact-value lang-en">AI Infrastructure Technology</div>
+              <div class="contact-value lang-ko">AI 인프라 기술</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🔑</div>
+            <div class="contact-detail">
+              <div class="contact-label lang-en">Core Technologies</div>
+              <div class="contact-label lang-ko">핵심 기술</div>
+              <div class="contact-value" style="font-size:.83rem;color:var(--text-muted)">MetaX GPU · θ-Kernel · MACA</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-<div class="container footer-grid">
-<div>
-<img src="logo.png" class="footer-logo">
-<p>
-<span class="lang-en">AI Infrastructure Technology Company</span>
-<span class="lang-ko">AI 인프라 기술 기업</span>
-</p>
-</div>
-
-<div>
-<h4 style="margin-bottom:16px">Technology</h4>
-<a href="#compute">Compute</a>
-<a href="#gpu">GPU Platform</a>
-<a href="#optimization">Optimization</a>
-</div>
-
-<div>
-<h4 style="margin-bottom:16px">Infrastructure</h4>
-<a href="#datacenter">Datacenter</a>
-<a href="#ecosystem">Ecosystem</a>
-<a href="#company">Company</a>
-</div>
-</div>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="logo.png" class="footer-logo" alt="CertiSilicon">
+        <p class="footer-brand-desc lang-en">AI Infrastructure Technology Company. Optimizing GPU compute for the next generation of enterprise AI.</p>
+        <p class="footer-brand-desc lang-ko">AI 인프라 기술 기업. 차세대 엔터프라이즈 AI를 위한 GPU 컴퓨팅 최적화.</p>
+        <div class="footer-tagline">Leading AI, Together</div>
+      </div>
+      <div class="footer-col">
+        <h4 lang-en>Products</h4>
+        <a href="#metax">MetaX GPU Platform</a>
+        <a href="#theta">θ-Kernel Software</a>
+        <a href="#ecosystem">MACA Ecosystem</a>
+        <a href="#stack">AI Datacenter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Technology</h4>
+        <a href="#metax">N-Series GPU</a>
+        <a href="#metax">C-Series GPU</a>
+        <a href="#metax">G-Series GPU</a>
+        <a href="#theta">Optimization SW</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#company" class="lang-en">About</a>
+        <a href="#company" class="lang-ko">회사소개</a>
+        <a href="mailto:andy@certisilicon.com">andy@certisilicon.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 CertiSilicon. All rights reserved.</span>
+      <span class="lang-en">AI Infrastructure Technology</span>
+      <span class="lang-ko">AI 인프라 기술 기업</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-function setLanguage(lang){
+function setLang(lang) {
+  const koEls = document.querySelectorAll('.lang-ko');
+  const enEls = document.querySelectorAll('.lang-en');
+  const btnEn = document.getElementById('btn-en');
+  const btnKo = document.getElementById('btn-ko');
 
-const ko=document.querySelectorAll('.lang-ko');
-const en=document.querySelectorAll('.lang-en');
-
-if(lang==='ko'){
-
-ko.forEach(el=>{
-  el.style.display='initial';
-});
-
-en.forEach(el=>{
-  el.style.display='none';
-});
-
-}else{
-
-en.forEach(el=>{
-  el.style.display='initial';
-});
-
-ko.forEach(el=>{
-  el.style.display='none';
-});
-}
+  if (lang === 'ko') {
+    koEls.forEach(el => el.style.display = '');
+    enEls.forEach(el => el.style.display = 'none');
+    btnKo.classList.add('active');
+    btnEn.classList.remove('active');
+  } else {
+    enEls.forEach(el => el.style.display = '');
+    koEls.forEach(el => el.style.display = 'none');
+    btnEn.classList.add('active');
+    btnKo.classList.remove('active');
+  }
 }
 
-window.addEventListener('DOMContentLoaded',()=>{
-  setLanguage('en');
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      entry.target.style.transition = 'opacity .7s ease, transform .7s ease';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.card, .pillar, .series-card, .stack-block, .maca-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  observer.observe(el);
 });
+
+window.addEventListener('DOMContentLoaded', () => setLang('en'));
 </script>
 </body>
 </html>
-```
