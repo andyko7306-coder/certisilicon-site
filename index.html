@@ -23,8 +23,6 @@ nav{justify-self:center;display:flex;gap:27px;font-size:10px;letter-spacing:.13e
 .hero .wrap{position:relative}.heroTop{display:flex;justify-content:space-between;align-items:flex-start;border-top:2px solid var(--ink);padding-top:15px}.issue{font-size:10px;letter-spacing:.18em;font-weight:700}.heroNote{font-size:10px;color:var(--gray);max-width:250px;text-align:right;line-height:1.5}
 .heroTitle{margin:74px 0 0;position:relative;z-index:3}.heroTitle h1{font-family:Manrope,sans-serif;font-size:clamp(76px,11.2vw,174px);line-height:.8;letter-spacing:-.09em;margin:0;font-weight:800}.heroTitle h1 .blue{color:var(--blue)}.heroTitle h1 .indent{padding-left:11vw}.heroTitle p{margin:34px 0 0 11vw;max-width:510px;font-size:15px;line-height:1.85;color:#53575e}
 .heroImage{position:absolute;right:-4%;top:175px;width:48%;height:560px;overflow:hidden;background:#0b1118}.heroImage img{width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.06)}.heroImage:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--paper) 0%,rgba(241,240,236,.2) 28%,transparent 55%),linear-gradient(0deg,rgba(0,0,0,.3),transparent 30%)}.heroCaption{position:absolute;right:0;top:760px;font-size:9px;letter-spacing:.12em;color:var(--gray)}
-.scrollMark{position:absolute;left:0;bottom:34px;font-size:9px;letter-spacing:.18em;color:var(--gray)}.scrollMark:before{content:"";display:inline-block;width:50px;height:1px;background:var(--ink);vertical-align:middle;margin-right:10px}
-
 .ticker{background:var(--blue);color:#fff;overflow:hidden;border-top:1px solid #0d2d8e;border-bottom:1px solid #0d2d8e}.tickerTrack{display:flex;gap:50px;white-space:nowrap;padding:15px 0;font-size:10px;letter-spacing:.14em;font-weight:700}.tickerTrack span:after{content:"✦";margin-left:50px;opacity:.5}
 
 section{padding:135px 0}.black{background:var(--black);color:var(--white)}.white{background:var(--paper)}.rule{border-top:1px solid var(--line)}
@@ -923,6 +921,16 @@ img,svg,video,canvas{max-width:100%;height:auto}
  header#header .mobileMenuBtn{width:38px!important;height:38px!important;min-width:38px!important}
  header#header .navRight .langBtn{min-width:27px!important}
 }
+
+/* Final adjustment: first-page/header supplied logo at 1.5x visual scale */
+@media (min-width: 901px){
+  header#header .nav{grid-template-columns:300px 1fr 120px}
+  header#header .brandLogo img{
+    transform:scale(1.5);
+    transform-origin:left center;
+  }
+}
+
 </style>
 
 <body id="top">
@@ -958,7 +966,7 @@ img,svg,video,canvas{max-width:100%;height:auto}
 
 <section class="hero" id="home"><div class="heroGrid"></div><div class="wrap">
 <div class="heroTop"><div class="issue">CERTISILICON / 2026</div><div class="heroNote" id="heroNote"></div></div>
-<div class="heroTitle"><h1>Leading <span class="blue">AI,</span><br><span class="indent">Together.</span></h1><p id="heroLead"></p></div><div class="heroImage"><img src="assets/beijing-office.png" alt="Certisilicon Beijing office"></div><div class="heroCaption" id="heroCaption"></div><div class="scrollMark" id="scrollMark"></div>
+<div class="heroTitle"><h1>Leading <span class="blue">AI,</span><br><span class="indent">Together.</span></h1><p id="heroLead"></p></div><div class="heroImage"><img src="assets/beijing-office.png" alt="Certisilicon Beijing office"></div><div class="heroCaption" id="heroCaption"></div>
 </div></section>
 
 <div class="ticker"><div class="wrap"><div class="tickerTrack" id="tickerTrack"></div></div></div>
@@ -1133,7 +1141,7 @@ const I18N = {
 ko:{
  nav_company:"회사소개",nav_technology:"기술",nav_thetacore:"ThetaCore",nav_solutions:"솔루션",nav_china:"중국사업",nav_insights:"인사이트",nav_contact:"문의",
  company_kicker:"회사소개", gpu_kicker:"GPU COMPUTING",gpuTitle:"GPU Computing<br><span>MetaX GPU</span>",gpuLead:"AI 학습과 추론을 위한 GPU 컴퓨팅 플랫폼을 연결하고, 시스템·서버·데이터센터까지 확장합니다.",gpuStatement:"MetaX GPU를 중심으로<br>AI Computing의 연결 구조를 만듭니다.",gpuBody:"Certisilicon은 MetaX GPU 제품군을 기반으로 GPU 서버, 고대역폭 메모리, 인터커넥트, 소프트웨어 스택과 AI 인프라를 연결하는 사업 모델을 구축합니다.",gpuCards:[["MetaX C500","64GB GPU Memory · ECC · MetaXLink","AI 학습 · 추론 · 데이터 처리"],["MetaX C500X","Optical Interconnect · 16–64 GPU Scale-up","대규모 학습 · 고동시성 추론 · LLM / AIGC"],["MetaX C600","OAM · 고용량 HBM · 최대 128 GPU Supernode","AI 서버 · Supernode · AI Computing Center"]],gpuNote:"※ MetaX GPU 제품 사양은 MetaX 공식 공개자료 기준으로 구성했습니다. 실제 공급·가격·성능은 별도 견적이 필요합니다.",technology_kicker:"기술",solutions_kicker:"솔루션",china_kicker:"글로벌 사업",insights_kicker:"인사이트",contact_kicker:"문의",
- heroNote:"지능의 시대를 위한<br>반도체 아키텍처",heroLead:"Certisilicon은 연산, 메모리, 데이터 이동이 만나는 지점에서 차세대 AI 컴퓨팅 기술을 개발합니다.",heroCaption:"01 — CERTISILICON 중국사업 거점 / 베이징",scrollMark:"SCROLL TO EXPLORE",
+ heroNote:"지능의 시대를 위한<br>반도체 아키텍처",heroLead:"Certisilicon은 연산, 메모리, 데이터 이동이 만나는 지점에서 차세대 AI 컴퓨팅 기술을 개발합니다.",heroCaption:"01 — CERTISILICON 중국사업 거점 / 베이징",
  ticker:["AI 반도체","THETACORE","HBM","AI 가속","AI 인프라","글로벌 컴퓨팅"],
  companyTitle:"지능은<br>실리콘에서 시작됩니다.",companyLead:"Certisilicon은 AI 반도체 아키텍처, 고대역폭 메모리, 기술 IP 및 AI 인프라를 연결하는 기술기업으로 성장하고 있습니다. 목표는 명확합니다. AI 성능과 경제성을 결정하는 각 계층을 하나의 시스템 관점에서 연결하는 것입니다.",
  companyStatement:"AI 인프라는 이제 <span>시스템 문제</span>가 되고 있습니다.<br>연산, 메모리, 데이터 이동, 전력, 비용을 더 이상 따로 볼 수 없습니다.",
@@ -1185,7 +1193,7 @@ ko:{
 en:{
  nav_company:"COMPANY",nav_technology:"TECHNOLOGY",nav_thetacore:"THETACORE",nav_solutions:"SOLUTIONS",nav_china:"CHINA",nav_insights:"INSIGHTS",nav_contact:"CONTACT",
  company_kicker:"COMPANY", gpu_kicker:"GPU COMPUTING",gpuTitle:"GPU Computing<br><span>MetaX GPU</span>",gpuLead:"Connecting GPU computing platforms for AI training and inference, extending from systems and servers to data centers.",gpuStatement:"Building the AI Computing<br>connection architecture around MetaX GPU.",gpuBody:"Certisilicon is building a business model that connects MetaX GPU products with GPU servers, high-bandwidth memory, interconnect, software stacks and AI infrastructure.",gpuCards:[["MetaX C500","64GB GPU Memory · ECC · MetaXLink","AI training · inference · data processing"],["MetaX C500X","Optical Interconnect · 16–64 GPU Scale-up","Large-scale training · high-concurrency inference · LLM / AIGC"],["MetaX C600","OAM · High-capacity HBM · Up to 128-GPU Supernode","AI server · Supernode · AI Computing Center"]],gpuNote:"※ MetaX GPU specifications are presented based on MetaX public materials. This does not imply that Certisilicon is the manufacturer; actual supply, pricing and performance require separate verification.",technology_kicker:"TECHNOLOGY",solutions_kicker:"SOLUTIONS",china_kicker:"GLOBAL PRESENCE",insights_kicker:"INSIGHTS",contact_kicker:"CONTACT",
- heroNote:"SEMICONDUCTOR ARCHITECTURE<br>FOR THE AGE OF INTELLIGENCE",heroLead:"Certisilicon builds next-generation AI computing technology at the point where compute, memory and data movement meet.",heroCaption:"01 — CERTISILICON CHINA BUSINESS BASE / BEIJING",scrollMark:"SCROLL TO EXPLORE",
+ heroNote:"SEMICONDUCTOR ARCHITECTURE<br>FOR THE AGE OF INTELLIGENCE",heroLead:"Certisilicon builds next-generation AI computing technology at the point where compute, memory and data movement meet.",heroCaption:"01 — CERTISILICON CHINA BUSINESS BASE / BEIJING",
  ticker:["AI SEMICONDUCTOR","THETACORE","HBM","AI ACCELERATION","AI INFRASTRUCTURE","GLOBAL COMPUTING"],
  companyTitle:"Silicon is where<br>intelligence begins.",companyLead:"Certisilicon is building its position around AI semiconductor architecture, high-bandwidth memory, technology IP and AI infrastructure. The objective is clear: connect the layers that determine AI performance and economics.",
  companyStatement:"AI infrastructure is becoming a <span>system problem.</span><br>Compute, memory, data movement, power and cost can no longer be treated independently.",
@@ -1213,7 +1221,7 @@ en:{
 zh:{
  nav_company:"公司介绍",nav_technology:"技术",nav_thetacore:"ThetaCore",nav_solutions:"解决方案",nav_china:"中国业务",nav_insights:"洞察",nav_contact:"联系我们",
  company_kicker:"公司介绍", gpu_kicker:"GPU COMPUTING",gpuTitle:"GPU Computing<br><span>MetaX GPU</span>",gpuLead:"连接面向AI训练与推理的GPU计算平台，并进一步延伸至系统、服务器与数据中心。",gpuStatement:"以MetaX GPU为中心<br>构建AI Computing连接架构。",gpuBody:"Certisilicon以MetaX GPU产品为基础，连接GPU服务器、高带宽内存、互连、软件栈与AI基础设施，构建计算业务模式。",gpuCards:[["MetaX C500","64GB GPU Memory · ECC · MetaXLink","AI训练 · 推理 · 数据处理"],["MetaX C500X","Optical Interconnect · 16–64 GPU Scale-up","大规模训练 · 高并发推理 · LLM / AIGC"],["MetaX C600","OAM · 高容量HBM · 最大128 GPU Supernode","AI服务器 · Supernode · AI Computing Center"]],gpuNote:"※ MetaX GPU产品规格依据MetaX公开资料整理。该内容不表示Certisilicon为制造商，实际供应、价格与性能仍需单独验证。",technology_kicker:"技术",solutions_kicker:"解决方案",china_kicker:"全球布局",insights_kicker:"洞察",contact_kicker:"联系我们",
- heroNote:"面向智能时代的<br>半导体架构",heroLead:"Certisilicon专注于计算、存储与数据移动交汇处的下一代AI计算技术。",heroCaption:"01 — CERTISILICON 中国业务基地 / 北京",scrollMark:"向下探索",
+ heroNote:"面向智能时代的<br>半导体架构",heroLead:"Certisilicon专注于计算、存储与数据移动交汇处的下一代AI计算技术。",heroCaption:"01 — CERTISILICON 中国业务基地 / 北京",
  ticker:["AI半导体","THETACORE","HBM","AI加速","AI基础设施","全球计算"],
  companyTitle:"智能<br>始于硅片。",companyLead:"Certisilicon围绕AI半导体架构、高带宽存储器、技术IP和AI基础设施建立技术能力。我们的目标是从系统层面连接决定AI性能与经济性的关键环节。",
  companyStatement:"AI基础设施正在成为一个<span>系统性问题。</span><br>计算、存储、数据移动、电力与成本不能再被独立看待。",
@@ -1271,7 +1279,7 @@ function renderLang(lang){
  state.lang=lang; const d=I18N[lang];
  document.documentElement.lang=lang==="zh"?"zh-CN":lang;
  document.querySelectorAll("[data-i18n]").forEach(x=>{if(d[x.dataset.i18n]!=null)x.textContent=d[x.dataset.i18n]});
- setHTML("heroNote",d.heroNote);setText("heroLead",d.heroLead);setText("heroCaption",d.heroCaption);setText("scrollMark",d.scrollMark);
+ setHTML("heroNote",d.heroNote);setText("heroLead",d.heroLead);setText("heroCaption",d.heroCaption);
  el("tickerTrack").innerHTML=d.ticker.map(x=>`<span>${x}</span>`).join("");
  setHTML("companyTitle",d.companyTitle);setText("companyLead",d.companyLead);setHTML("companyStatement",d.companyStatement);
  el("companyGrid").innerHTML=d.companyCards.map(x=>`<div class="detailBlock"><small>${x[0]}</small><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
