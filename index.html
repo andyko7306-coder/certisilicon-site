@@ -1453,5 +1453,14 @@ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded"
 })();
 </script>
 
+
+<script id="certisilicon-contextmenu-protection">
+(function () {
+  document.addEventListener('contextmenu', function (event) {
+    event.preventDefault();
+  }, false);
+})();
+</script>
+
 </body>
 </html>
