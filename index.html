@@ -861,9 +861,11 @@ header .brandLogo img{
 </style>
 
 
-<style id="remove-question-box-final">
-.questionBox,.question-mark,.questionMark,.heroQuestion,.heroQuestionBox{
-  display:none!important;
+<style id="mobile-broken-image-fix">
+/* Mobile: suppress the broken-image glyph while keeping the hero composition/space intact. */
+@media (max-width: 767px){
+  .heroImage img{display:none !important;}
+  .heroImage{overflow:hidden;}
 }
 </style>
 
@@ -939,6 +941,14 @@ img,svg,video,canvas{max-width:100%;height:auto}
   }
 }
 
+
+/* Mobile standalone HTML fix: keep hero image visible when opened from a phone.
+   The image is embedded as a data URI, so no external assets folder is required. */
+.heroImage img{display:block;max-width:100%}
+@media (max-width:900px){
+  .heroImage{overflow:hidden}
+}
+
 </style>
 
 <body id="top">
@@ -974,7 +984,7 @@ img,svg,video,canvas{max-width:100%;height:auto}
 
 <section class="hero" id="home"><div class="heroGrid"></div><div class="wrap">
 <div class="heroTop"><div class="issue">CERTISILICON / 2026</div><div class="heroNote" id="heroNote"></div></div>
-<div class="heroTitle"><h1>Leading <span class="blue">AI,</span><br><span class="indent">Together.</span></h1><p id="heroLead"></p></div><div class="heroImage"><img src="assets/beijing-office.png" alt="Certisilicon Beijing office"></div><div class="heroCaption" id="heroCaption"></div>
+<div class="heroTitle"><h1>Leading <span class="blue">AI,</span><br><span class="indent">Together.</span></h1><p id="heroLead"></p></div><div class="heroImage"></div><div class="heroCaption" id="heroCaption"></div>
 </div></section>
 
 <div class="ticker"><div class="wrap"><div class="tickerTrack" id="tickerTrack"></div></div></div>
@@ -1029,52 +1039,52 @@ img,svg,video,canvas{max-width:100%;height:auto}
 <div class="caseLayout"><div class="caseFacts" id="caseFacts"></div>
 
 <div class="caseVisual caseVisualTechOnly">
-  <div class="btHeader"><span>THETACORE · TECHNOLOGY DIFFERENTIATION</span><b>DOMAIN-AGNOSTIC AI COMPUTING</b></div>
+  <div class="btHeader"><span data-i18n="btHeader">THETACORE · TECHNOLOGY DIFFERENTIATION</span><b data-i18n="btDomainAgnostic">DOMAIN-AGNOSTIC AI COMPUTING</b></div>
 
-  <div class="btTitle">차별점 및 도메인 확장</div>
-  <div class="btSubtitle">하드웨어 변경 없이 연산 구조와 자원 제어를 최적화하고, 다양한 AI 도메인으로 확장합니다.</div>
+  <div class="btTitle" data-i18n="btTitle">차별점 및 도메인 확장</div>
+  <div class="btSubtitle" data-i18n="btSubtitle">하드웨어 변경 없이 연산 구조와 자원 제어를 최적화하고, 다양한 AI 도메인으로 확장합니다.</div>
 
   <div class="btTechGrid">
     <article>
-      <div class="btPill">희소 연산 최적화 엔진</div>
-      <p>불필요한 연산을 제거하여 AI 추론 과정의 연산 효율을 높이는 구조입니다.</p>
-      <div class="btStat"><strong>63.4%</strong><span>GPU 전력 절감</span></div>
-      <div class="btStat"><strong>4–32%</strong><span>처리 속도 개선</span></div>
+      <div class="btPill" data-i18n="btSparseTitle">희소 연산 최적화 엔진</div>
+      <p data-i18n="btSparseBody">불필요한 연산을 제거하여 AI 추론 과정의 연산 효율을 높이는 구조입니다.</p>
+      <div class="btStat"><strong>63.4%</strong><span data-i18n="btPower">GPU 전력 절감</span></div>
+      <div class="btStat"><strong>4–32%</strong><span data-i18n="btSpeed">처리 속도 개선</span></div>
     </article>
     <article>
-      <div class="btPill">실시간 자원 제어 시스템</div>
-      <p>워크로드 변화에 따라 컴퓨팅 자원의 전력·성능 상태를 실시간으로 조정합니다.</p>
-      <div class="btStat"><strong>0.972</strong><span>품질 신뢰도</span></div>
-      <div class="btHighlight">실시간 최적화</div>
+      <div class="btPill" data-i18n="btRealtimeTitle">실시간 자원 제어 시스템</div>
+      <p data-i18n="btRealtimeBody">워크로드 변화에 따라 컴퓨팅 자원의 전력·성능 상태를 실시간으로 조정합니다.</p>
+      <div class="btStat"><strong>0.972</strong><span data-i18n="btQuality">품질 신뢰도</span></div>
+      <div class="btHighlight" data-i18n="btRealtime">실시간 최적화</div>
     </article>
     <article>
-      <div class="btPill">비침습·무중단 배포 체계</div>
-      <p>기존 하드웨어·소프트웨어 스택을 크게 변경하지 않는 방향으로 적용성을 확보합니다.</p>
-      <div class="btHighlight">운영 환경 변화 최소화</div>
-      <div class="btSmall">기존 AI 인프라와의 연계성을 고려한 적용 구조</div>
+      <div class="btPill" data-i18n="btDeploymentTitle">비침습·무중단 배포 체계</div>
+      <p data-i18n="btDeploymentBody">기존 하드웨어·소프트웨어 스택을 크게 변경하지 않는 방향으로 적용성을 확보합니다.</p>
+      <div class="btHighlight" data-i18n="btMinimalChange">운영 환경 변화 최소화</div>
+      <div class="btSmall" data-i18n="btIntegration">기존 AI 인프라와의 연계성을 고려한 적용 구조</div>
     </article>
   </div>
 
   <div class="btDomain">
-    <div class="btDomainLabel">도메인 확장 성과</div>
+    <div class="btDomainLabel" data-i18n="btDomainResult">도메인 확장 성과</div>
     <div class="btDomainCore">
-      <div class="btCoreCircle"><small>기본 도메인</small><strong>LLM<br>추론 최적화</strong></div>
+      <div class="btCoreCircle"><small data-i18n="btBaseDomain">기본 도메인</small><strong data-i18n="btLLM">LLM<br>추론 최적화</strong></div>
       <div class="btDomainArrow">→</div>
       <div class="btDomainModels">
-        <div><b>Evoformer</b><span>단백질 구조 예측</span><strong>18.3× 개선</strong></div>
-        <div><b>ESM-2</b><span>단백질 언어모델</span><strong>11.3× 개선</strong></div>
+        <div><b>Evoformer</b><span data-i18n="btEvoformer">단백질 구조 예측</span><strong data-i18n="btImproved183">18.3× 개선</strong></div>
+        <div><b>ESM-2</b><span data-i18n="btESM2">단백질 언어모델</span><strong data-i18n="btImproved113">11.3× 개선</strong></div>
       </div>
       <div class="btDomainNote">
-        <b>공통 코어 알고리즘</b>
-        <span>도메인에 무관하게 적용</span>
+        <b data-i18n="btCommonCore">공통 코어 알고리즘</b>
+        <span data-i18n="btDomainAgnosticApply">도메인에 무관하게 적용</span>
         <hr>
-        <b>도메인별 플러그인 기반</b>
-        <span>시장 확장 가능성 확보</span>
+        <b data-i18n="btPlugin">도메인별 플러그인 기반</b>
+        <span data-i18n="btMarketExpansion">시장 확장 가능성 확보</span>
       </div>
     </div>
   </div>
 
-  <div class="btBottom">일반 LLM을 넘어 <b>바이오 AI 등 복수 도메인으로 확장 가능성</b>을 확인</div>
+  <div class="btBottom" data-i18n="btBottom">일반 LLM을 넘어 <b>바이오 AI 등 복수 도메인으로 확장 가능성</b>을 확인</div>
   <div class="caseOverlay" id="caseOverlay"></div>
 </div></div>
 </div>
@@ -1149,6 +1159,7 @@ const I18N = {
 ko:{
  nav_company:"회사소개",nav_technology:"기술",nav_thetacore:"ThetaCore",nav_solutions:"솔루션",nav_china:"중국사업",nav_insights:"인사이트",nav_contact:"문의",
  company_kicker:"회사소개", gpu_kicker:"GPU COMPUTING",gpuTitle:"GPU Computing<br><span>MetaX GPU</span>",gpuLead:"AI 학습과 추론을 위한 GPU 컴퓨팅 플랫폼을 연결하고, 시스템·서버·데이터센터까지 확장합니다.",gpuStatement:"MetaX GPU를 중심으로<br>AI Computing의 연결 구조를 만듭니다.",gpuBody:"Certisilicon은 MetaX GPU 제품군을 기반으로 GPU 서버, 고대역폭 메모리, 인터커넥트, 소프트웨어 스택과 AI 인프라를 연결하는 사업 모델을 구축합니다.",gpuCards:[["MetaX C500","64GB GPU Memory · ECC · MetaXLink","AI 학습 · 추론 · 데이터 처리"],["MetaX C500X","Optical Interconnect · 16–64 GPU Scale-up","대규모 학습 · 고동시성 추론 · LLM / AIGC"],["MetaX C600","OAM · 고용량 HBM · 최대 128 GPU Supernode","AI 서버 · Supernode · AI Computing Center"]],gpuNote:"※ MetaX GPU 제품 사양은 MetaX 공식 공개자료 기준으로 구성했습니다. 실제 공급·가격·성능은 별도 견적이 필요합니다.",technology_kicker:"기술",solutions_kicker:"솔루션",china_kicker:"글로벌 사업",insights_kicker:"인사이트",contact_kicker:"문의",
+ btHeader:"THETACORE · TECHNOLOGY DIFFERENTIATION",btDomainAgnostic:"DOMAIN-AGNOSTIC AI COMPUTING",btTitle:"차별점 및 도메인 확장",btSubtitle:"하드웨어 변경 없이 연산 구조와 자원 제어를 최적화하고, 다양한 AI 도메인으로 확장합니다.",btSparseTitle:"희소 연산 최적화 엔진",btSparseBody:"불필요한 연산을 제거하여 AI 추론 과정의 연산 효율을 높이는 구조입니다.",btPower:"GPU 전력 절감",btSpeed:"처리 속도 개선",btRealtimeTitle:"실시간 자원 제어 시스템",btRealtimeBody:"워크로드 변화에 따라 컴퓨팅 자원의 전력·성능 상태를 실시간으로 조정합니다.",btQuality:"품질 신뢰도",btRealtime:"실시간 최적화",btDeploymentTitle:"비침습·무중단 배포 체계",btDeploymentBody:"기존 하드웨어·소프트웨어 스택을 크게 변경하지 않는 방향으로 적용성을 확보합니다.",btMinimalChange:"운영 환경 변화 최소화",btIntegration:"기존 AI 인프라와의 연계성을 고려한 적용 구조",btDomainResult:"도메인 확장 성과",btBaseDomain:"기본 도메인",btLLM:"LLM<br>추론 최적화",btEvoformer:"단백질 구조 예측",btImproved183:"18.3× 개선",btESM2:"단백질 언어모델",btImproved113:"11.3× 개선",btCommonCore:"공통 코어 알고리즘",btDomainAgnosticApply:"도메인에 무관하게 적용",btPlugin:"도메인별 플러그인 기반",btMarketExpansion:"시장 확장 가능성 확보",btBottom:"일반 LLM을 넘어 <b>바이오 AI 등 복수 도메인으로 확장 가능성</b>을 확인",
  heroNote:"지능의 시대를 위한<br>반도체 아키텍처",heroLead:"Certisilicon은 연산, 메모리, 데이터 이동이 만나는 지점에서 차세대 AI 컴퓨팅 기술을 개발합니다.",heroCaption:"01 — CERTISILICON 중국사업 거점 / 베이징",
  ticker:["AI 반도체","THETACORE","HBM","AI 가속","AI 인프라","글로벌 컴퓨팅"],
  companyTitle:"지능은<br>실리콘에서 시작됩니다.",companyLead:"Certisilicon은 AI 반도체 아키텍처, 고대역폭 메모리, 기술 IP 및 AI 인프라를 연결하는 기술기업으로 성장하고 있습니다. 목표는 명확합니다. AI 성능과 경제성을 결정하는 각 계층을 하나의 시스템 관점에서 연결하는 것입니다.",
@@ -1201,6 +1212,7 @@ ko:{
 en:{
  nav_company:"COMPANY",nav_technology:"TECHNOLOGY",nav_thetacore:"THETACORE",nav_solutions:"SOLUTIONS",nav_china:"CHINA",nav_insights:"INSIGHTS",nav_contact:"CONTACT",
  company_kicker:"COMPANY", gpu_kicker:"GPU COMPUTING",gpuTitle:"GPU Computing<br><span>MetaX GPU</span>",gpuLead:"Connecting GPU computing platforms for AI training and inference, extending from systems and servers to data centers.",gpuStatement:"Building the AI Computing<br>connection architecture around MetaX GPU.",gpuBody:"Certisilicon is building a business model that connects MetaX GPU products with GPU servers, high-bandwidth memory, interconnect, software stacks and AI infrastructure.",gpuCards:[["MetaX C500","64GB GPU Memory · ECC · MetaXLink","AI training · inference · data processing"],["MetaX C500X","Optical Interconnect · 16–64 GPU Scale-up","Large-scale training · high-concurrency inference · LLM / AIGC"],["MetaX C600","OAM · High-capacity HBM · Up to 128-GPU Supernode","AI server · Supernode · AI Computing Center"]],gpuNote:"※ MetaX GPU specifications are presented based on MetaX public materials. This does not imply that Certisilicon is the manufacturer; actual supply, pricing and performance require separate verification.",technology_kicker:"TECHNOLOGY",solutions_kicker:"SOLUTIONS",china_kicker:"GLOBAL PRESENCE",insights_kicker:"INSIGHTS",contact_kicker:"CONTACT",
+ btHeader:"THETACORE · TECHNOLOGY DIFFERENTIATION",btDomainAgnostic:"DOMAIN-AGNOSTIC AI COMPUTING",btTitle:"Technology Differentiation & Domain Expansion",btSubtitle:"Optimize compute structure and resource control without changing the hardware, while extending toward multiple AI domains.",btSparseTitle:"Sparse Compute Optimization Engine",btSparseBody:"A structure designed to improve computational efficiency during AI inference by removing unnecessary operations.",btPower:"GPU Power Reduction",btSpeed:"Processing Speed Improvement",btRealtimeTitle:"Real-Time Resource Control System",btRealtimeBody:"Adjusts the power and performance state of computing resources in real time as workloads change.",btQuality:"Quality Reliability",btRealtime:"Real-Time Optimization",btDeploymentTitle:"Non-Invasive, Continuous Deployment",btDeploymentBody:"Designed to improve applicability while minimizing major changes to existing hardware and software stacks.",btMinimalChange:"Minimal Operational Change",btIntegration:"An application structure designed around integration with existing AI infrastructure.",btDomainResult:"Domain Expansion Results",btBaseDomain:"Base Domain",btLLM:"LLM<br>Inference Optimization",btEvoformer:"Protein Structure Prediction",btImproved183:"18.3× Improvement",btESM2:"Protein Language Model",btImproved113:"11.3× Improvement",btCommonCore:"Common Core Algorithm",btDomainAgnosticApply:"Applicable across domains",btPlugin:"Domain-Specific Plugin Model",btMarketExpansion:"Expanding market applicability",btBottom:"Beyond general LLMs, <b>expansion potential across multiple domains such as Bio AI</b> has been identified",
  heroNote:"SEMICONDUCTOR ARCHITECTURE<br>FOR THE AGE OF INTELLIGENCE",heroLead:"Certisilicon builds next-generation AI computing technology at the point where compute, memory and data movement meet.",heroCaption:"01 — CERTISILICON CHINA BUSINESS BASE / BEIJING",
  ticker:["AI SEMICONDUCTOR","THETACORE","HBM","AI ACCELERATION","AI INFRASTRUCTURE","GLOBAL COMPUTING"],
  companyTitle:"Silicon is where<br>intelligence begins.",companyLead:"Certisilicon is building its position around AI semiconductor architecture, high-bandwidth memory, technology IP and AI infrastructure. The objective is clear: connect the layers that determine AI performance and economics.",
@@ -1229,6 +1241,7 @@ en:{
 zh:{
  nav_company:"公司介绍",nav_technology:"技术",nav_thetacore:"ThetaCore",nav_solutions:"解决方案",nav_china:"中国业务",nav_insights:"洞察",nav_contact:"联系我们",
  company_kicker:"公司介绍", gpu_kicker:"GPU COMPUTING",gpuTitle:"GPU Computing<br><span>MetaX GPU</span>",gpuLead:"连接面向AI训练与推理的GPU计算平台，并进一步延伸至系统、服务器与数据中心。",gpuStatement:"以MetaX GPU为中心<br>构建AI Computing连接架构。",gpuBody:"Certisilicon以MetaX GPU产品为基础，连接GPU服务器、高带宽内存、互连、软件栈与AI基础设施，构建计算业务模式。",gpuCards:[["MetaX C500","64GB GPU Memory · ECC · MetaXLink","AI训练 · 推理 · 数据处理"],["MetaX C500X","Optical Interconnect · 16–64 GPU Scale-up","大规模训练 · 高并发推理 · LLM / AIGC"],["MetaX C600","OAM · 高容量HBM · 最大128 GPU Supernode","AI服务器 · Supernode · AI Computing Center"]],gpuNote:"※ MetaX GPU产品规格依据MetaX公开资料整理。该内容不表示Certisilicon为制造商，实际供应、价格与性能仍需单独验证。",technology_kicker:"技术",solutions_kicker:"解决方案",china_kicker:"全球布局",insights_kicker:"洞察",contact_kicker:"联系我们",
+ btHeader:"THETACORE · 技术差异化",btDomainAgnostic:"跨领域 AI 计算",btTitle:"技术差异化与领域扩展",btSubtitle:"无需改变硬件，通过优化计算结构与资源控制提升效率，并向多种AI领域扩展。",btSparseTitle:"稀疏计算优化引擎",btSparseBody:"通过减少不必要的计算，提高AI推理过程中的计算效率。",btPower:"GPU功耗降低",btSpeed:"处理速度提升",btRealtimeTitle:"实时资源控制系统",btRealtimeBody:"根据工作负载变化，实时调整计算资源的功耗与性能状态。",btQuality:"质量可靠度",btRealtime:"实时优化",btDeploymentTitle:"非侵入式·不中断部署体系",btDeploymentBody:"在尽量不大幅改变现有硬件与软件栈的方向上，提高技术的适用性。",btMinimalChange:"最小化运营环境变化",btIntegration:"兼顾与现有AI基础设施的衔接与应用。",btDomainResult:"领域扩展成果",btBaseDomain:"基础领域",btLLM:"LLM<br>推理优化",btEvoformer:"蛋白质结构预测",btImproved183:"提升18.3倍",btESM2:"蛋白质语言模型",btImproved113:"提升11.3倍",btCommonCore:"通用核心算法",btDomainAgnosticApply:"可跨领域应用",btPlugin:"基于领域插件",btMarketExpansion:"拓展市场应用空间",btBottom:"从通用LLM出发，<b>已确认向Bio AI等多个领域扩展的可能性</b>",
  heroNote:"面向智能时代的<br>半导体架构",heroLead:"Certisilicon专注于计算、存储与数据移动交汇处的下一代AI计算技术。",heroCaption:"01 — CERTISILICON 中国业务基地 / 北京",
  ticker:["AI半导体","THETACORE","HBM","AI加速","AI基础设施","全球计算"],
  companyTitle:"智能<br>始于硅片。",companyLead:"Certisilicon围绕AI半导体架构、高带宽存储器、技术IP和AI基础设施建立技术能力。我们的目标是从系统层面连接决定AI性能与经济性的关键环节。",
@@ -1283,11 +1296,25 @@ function certisiliconSelfTest(){
   return {pass:failed.length===0,checked:results.length,failed,results};
 }
 
+window.renderLang=renderLang;
 function renderLang(lang){
  state.lang=lang; const d=I18N[lang];
  document.documentElement.lang=lang==="zh"?"zh-CN":lang;
  document.querySelectorAll("[data-i18n]").forEach(x=>{if(d[x.dataset.i18n]!=null)x.textContent=d[x.dataset.i18n]});
  setHTML("heroNote",d.heroNote);setText("heroLead",d.heroLead);setText("heroCaption",d.heroCaption);
+setHTML("btHeader",d.btHeader);setHTML("btDomainAgnostic",d.btDomainAgnostic);
+setHTML("btTitle",d.btTitle);setHTML("btSubtitle",d.btSubtitle);
+setHTML("btSparseTitle",d.btSparseTitle);setHTML("btSparseBody",d.btSparseBody);
+setHTML("btPower",d.btPower);setHTML("btSpeed",d.btSpeed);
+setHTML("btRealtimeTitle",d.btRealtimeTitle);setHTML("btRealtimeBody",d.btRealtimeBody);
+setHTML("btQuality",d.btQuality);setHTML("btRealtime",d.btRealtime);
+setHTML("btDeploymentTitle",d.btDeploymentTitle);setHTML("btDeploymentBody",d.btDeploymentBody);
+setHTML("btMinimalChange",d.btMinimalChange);setHTML("btIntegration",d.btIntegration);
+setHTML("btDomainResult",d.btDomainResult);setHTML("btBaseDomain",d.btBaseDomain);
+setHTML("btLLM",d.btLLM);setHTML("btEvoformer",d.btEvoformer);setHTML("btImproved183",d.btImproved183);
+setHTML("btESM2",d.btESM2);setHTML("btImproved113",d.btImproved113);
+setHTML("btCommonCore",d.btCommonCore);setHTML("btDomainAgnosticApply",d.btDomainAgnosticApply);
+setHTML("btPlugin",d.btPlugin);setHTML("btMarketExpansion",d.btMarketExpansion);setHTML("btBottom",d.btBottom);
  el("tickerTrack").innerHTML=d.ticker.map(x=>`<span>${x}</span>`).join("");
  setHTML("companyTitle",d.companyTitle);setText("companyLead",d.companyLead);setHTML("companyStatement",d.companyStatement);
  el("companyGrid").innerHTML=d.companyCards.map(x=>`<div class="detailBlock"><small>${x[0]}</small><h3>${x[1]}</h3><p>${x[2]}</p></div>`).join("");
@@ -1317,18 +1344,18 @@ function renderLang(lang){
 }
 
 function modalContent(lang,key,row){
- const D={"ko": {"semiconductor": ["01 / SOLUTION", "AI SEMICONDUCTOR", "AI 중심 반도체 아키텍처", "AI 컴퓨팅은 아키텍처에서 시작됩니다. Certisilicon은 연산, 메모리 동작과 데이터 이동을 하나의 연결된 시스템으로 설계합니다.", ["AI Compute", "Architecture", "Workload Optimization", "System Design"], [["워크로드 중심 설계", "AI workload의 연산량, 메모리 접근, latency와 데이터 이동 특성을 분석하고 목표 workload에 맞는 실행 구조를 설계합니다."], ["컴퓨트·메모리·데이터 경로", "연산 자원의 활용도를 높이는 동시에 메모리 접근과 데이터 이동의 비효율을 줄이는 방향으로 아키텍처를 구성합니다."], ["사업 적용", "AI 가속기와 커스텀 실리콘, 서버 및 AI 인프라까지 확장 가능한 기술 기반으로 연결합니다."]]], "hbm": ["02 / SOLUTION", "HBM SOLUTIONS", "HBM 솔루션", "HBM을 단순한 메모리 부품이 아니라 AI 컴퓨팅의 성능과 효율을 결정하는 시스템 계층으로 바라봅니다.", ["HBM", "Memory Bandwidth", "Capacity", "Data Path", "AI Workload"], [["메모리 병목 분석", "AI workload에서는 연산 성능이 충분해도 메모리 대역폭, 용량과 접근 효율이 병목이 될 수 있습니다."], ["HBM 인지형 아키텍처", "HBM 동작을 compute scheduling, data movement와 accelerator utilization에 연결해 실제 AI throughput을 높이는 구조를 설계합니다."], ["사업 적용", "AI 가속기와 고성능 서버의 메모리 아키텍처, 시스템 통합 및 파트너 협력 영역으로 확장합니다."]]], "accelerator": ["03 / SOLUTION", "AI ACCELERATOR", "AI 가속기", "피크 연산량보다 실제 AI workload에서 얼마나 유용한 연산을 지속적으로 수행하는지를 중심으로 가속기를 설계합니다.", ["Inference", "Acceleration", "Utilization", "Energy Efficiency"], [["워크로드 우선", "throughput, latency, precision, memory bandwidth 등 목표 workload의 요구조건에서 가속기 구조를 출발시킵니다."], ["실효성능 최적화", "compute utilization과 데이터 이동 효율을 함께 최적화해 실제 서비스 환경의 성능과 에너지 효율을 높이는 방향을 지향합니다."], ["ThetaCore 연결", "ThetaCore의 연산 최적화 개념을 가속기 실행 경로와 연결하고, HBM 및 데이터 경로까지 통합해 시스템 효율을 높입니다."]]], "server": ["04 / SOLUTION", "AI SERVER", "AI 서버", "AI 서버는 GPU 수량만으로 결정되지 않습니다. Compute, HBM, networking, power와 cooling을 하나의 시스템으로 설계해야 합니다.", ["GPU / Accelerator", "HBM", "Networking", "Power", "Cooling"], [["통합 시스템 설계", "가속기, HBM 토폴로지, 네트워크, 스토리지, 전력과 냉각을 하나의 설계 문제로 다룹니다."], ["ThetaCore 적용", "ThetaCore를 연산 효율화 계층으로 연결해 기존 AI 서버 구성의 활용도를 높이고 시스템 병목을 줄이는 방향을 검토합니다."], ["사업 적용", "GPU·HBM·서버·소프트웨어·인프라 파트너를 연결하는 AI 서버 구축 및 프로젝트형 사업으로 확장할 수 있습니다."]]], "datacenter": ["05 / SOLUTION", "AI DATA CENTER", "AI 데이터센터", "AI 데이터센터는 반도체 기술이 실제 서비스 가치로 전환되는 최종 시스템 계층입니다.", ["AI Infrastructure", "TCO", "Power", "Cooling", "Operations"], [["인프라 전체 최적화", "compute, memory, network, power, cooling, utilization과 물리적 공간을 하나의 시스템 변수로 봅니다."], ["TCO와 운영 효율", "초기 구축비뿐 아니라 전력, 냉각, 활용도, 유지보수와 교체주기까지 포함해 장기 운영 효율을 설계합니다."], ["Certisilicon의 역할", "AI 반도체 아키텍처와 HBM, 가속기, 서버 기술을 데이터센터 수준의 구축 전략과 연결하는 시스템 파트너를 지향합니다."]]]}, "en": {"semiconductor": ["01 / SOLUTION", "AI SEMICONDUCTOR", "AI Semiconductor Architecture", "AI 컴퓨팅은 아키텍처에서 시작됩니다. Certisilicon은 연산, 메모리 동작과 데이터 이동을 하나의 연결된 시스템으로 설계합니다.", ["AI Compute", "Architecture", "Workload Optimization", "System Design"], [["What we do", "Real AI workloads drive architecture decisions across compute, memory and data movement."], ["Technology perspective", "연산 자원의 활용도를 높이는 동시에 메모리 접근과 데이터 이동의 비효율을 줄이는 방향으로 아키텍처를 구성합니다."], ["Business application", "AI 가속기와 커스텀 실리콘, 서버 및 AI 인프라까지 확장 가능한 기술 기반으로 연결합니다."]]], "hbm": ["02 / SOLUTION", "HBM SOLUTIONS", "HBM Solutions", "HBM을 단순한 메모리 부품이 아니라 AI 컴퓨팅의 성능과 효율을 결정하는 시스템 계층으로 바라봅니다.", ["HBM", "Memory Bandwidth", "Capacity", "Data Path", "AI Workload"], [["What we do", "Real AI workloads drive architecture decisions across compute, memory and data movement."], ["Technology perspective", "HBM 동작을 compute scheduling, data movement와 accelerator utilization에 연결해 실제 AI throughput을 높이는 구조를 설계합니다."], ["Business application", "AI 가속기와 고성능 서버의 메모리 아키텍처, 시스템 통합 및 파트너 협력 영역으로 확장합니다."]]], "accelerator": ["03 / SOLUTION", "AI ACCELERATOR", "AI Accelerator", "피크 연산량보다 실제 AI workload에서 얼마나 유용한 연산을 지속적으로 수행하는지를 중심으로 가속기를 설계합니다.", ["Inference", "Acceleration", "Utilization", "Energy Efficiency"], [["What we do", "Real AI workloads drive architecture decisions across compute, memory and data movement."], ["Technology perspective", "compute utilization과 데이터 이동 효율을 함께 최적화해 실제 서비스 환경의 성능과 에너지 효율을 높이는 방향을 지향합니다."], ["Business application", "ThetaCore의 연산 최적화 개념을 가속기 실행 경로와 연결하고, HBM 및 데이터 경로까지 통합해 시스템 효율을 높입니다."]]], "server": ["04 / SOLUTION", "AI SERVER", "AI Server", "AI 서버는 GPU 수량만으로 결정되지 않습니다. Compute, HBM, networking, power와 cooling을 하나의 시스템으로 설계해야 합니다.", ["GPU / Accelerator", "HBM", "Networking", "Power", "Cooling"], [["What we do", "Real AI workloads drive architecture decisions across compute, memory and data movement."], ["Technology perspective", "ThetaCore를 연산 효율화 계층으로 연결해 기존 AI 서버 구성의 활용도를 높이고 시스템 병목을 줄이는 방향을 검토합니다."], ["Business application", "GPU·HBM·서버·소프트웨어·인프라 파트너를 연결하는 AI 서버 구축 및 프로젝트형 사업으로 확장할 수 있습니다."]]], "datacenter": ["05 / SOLUTION", "AI DATA CENTER", "AI Data Center", "AI 데이터센터는 반도체 기술이 실제 서비스 가치로 전환되는 최종 시스템 계층입니다.", ["AI Infrastructure", "TCO", "Power", "Cooling", "Operations"], [["What we do", "Real AI workloads drive architecture decisions across compute, memory and data movement."], ["Technology perspective", "초기 구축비뿐 아니라 전력, 냉각, 활용도, 유지보수와 교체주기까지 포함해 장기 운영 효율을 설계합니다."], ["Business application", "AI 반도체 아키텍처와 HBM, 가속기, 서버 기술을 데이터센터 수준의 구축 전략과 연결하는 시스템 파트너를 지향합니다."]]]}, "zh": {"semiconductor": ["01 / SOLUTION", "AI SEMICONDUCTOR", "AI半导体架构", "AI 컴퓨팅은 아키텍처에서 시작됩니다. Certisilicon은 연산, 메모리 동작과 데이터 이동을 하나의 연결된 시스템으로 설계합니다.", ["AI Compute", "Architecture", "Workload Optimization", "System Design"], [["核心内容", "从真实AI工作负载出发，协同设计计算、内存与数据移动。"], ["技术视角", "연산 자원의 활용도를 높이는 동시에 메모리 접근과 데이터 이동의 비효율을 줄이는 방향으로 아키텍처를 구성합니다."], ["业务应用", "AI 가속기와 커스텀 실리콘, 서버 및 AI 인프라까지 확장 가능한 기술 기반으로 연결합니다."]]], "hbm": ["02 / SOLUTION", "HBM SOLUTIONS", "HBM解决方案", "HBM을 단순한 메모리 부품이 아니라 AI 컴퓨팅의 성능과 효율을 결정하는 시스템 계층으로 바라봅니다.", ["HBM", "Memory Bandwidth", "Capacity", "Data Path", "AI Workload"], [["核心内容", "从真实AI工作负载出发，协同设计计算、内存与数据移动。"], ["技术视角", "HBM 동작을 compute scheduling, data movement와 accelerator utilization에 연결해 실제 AI throughput을 높이는 구조를 설계합니다."], ["业务应用", "AI 가속기와 고성능 서버의 메모리 아키텍처, 시스템 통합 및 파트너 협력 영역으로 확장합니다."]]], "accelerator": ["03 / SOLUTION", "AI ACCELERATOR", "AI加速器", "피크 연산량보다 실제 AI workload에서 얼마나 유용한 연산을 지속적으로 수행하는지를 중심으로 가속기를 설계합니다.", ["Inference", "Acceleration", "Utilization", "Energy Efficiency"], [["核心内容", "从真实AI工作负载出发，协同设计计算、内存与数据移动。"], ["技术视角", "compute utilization과 데이터 이동 효율을 함께 최적화해 실제 서비스 환경의 성능과 에너지 효율을 높이는 방향을 지향합니다."], ["业务应用", "ThetaCore의 연산 최적화 개념을 가속기 실행 경로와 연결하고, HBM 및 데이터 경로까지 통합해 시스템 효율을 높입니다."]]], "server": ["04 / SOLUTION", "AI SERVER", "AI服务器", "AI 서버는 GPU 수량만으로 결정되지 않습니다. Compute, HBM, networking, power와 cooling을 하나의 시스템으로 설계해야 합니다.", ["GPU / Accelerator", "HBM", "Networking", "Power", "Cooling"], [["核心内容", "从真实AI工作负载出发，协同设计计算、内存与数据移动。"], ["技术视角", "ThetaCore를 연산 효율화 계층으로 연결해 기존 AI 서버 구성의 활용도를 높이고 시스템 병목을 줄이는 방향을 검토합니다."], ["业务应用", "GPU·HBM·서버·소프트웨어·인프라 파트너를 연결하는 AI 서버 구축 및 프로젝트형 사업으로 확장할 수 있습니다."]]], "datacenter": ["05 / SOLUTION", "AI DATA CENTER", "AI数据中心", "AI 데이터센터는 반도체 기술이 실제 서비스 가치로 전환되는 최종 시스템 계층입니다.", ["AI Infrastructure", "TCO", "Power", "Cooling", "Operations"], [["核心内容", "从真实AI工作负载出发，协同设计计算、内存与数据移动。"], ["技术视角", "초기 구축비뿐 아니라 전력, 냉각, 활용도, 유지보수와 교체주기까지 포함해 장기 운영 효율을 설계합니다."], ["业务应用", "AI 반도체 아키텍처와 HBM, 가속기, 서버 기술을 데이터센터 수준의 구축 전략과 연결하는 시스템 파트너를 지향합니다."]]]}};
+ const D={"ko":{"semiconductor":["01 / SOLUTION","AI SEMICONDUCTOR","AI 중심 반도체 아키텍처","AI 컴퓨팅은 아키텍처에서 시작됩니다. Certisilicon은 연산, 메모리 동작과 데이터 이동을 하나의 연결된 시스템으로 설계합니다.",["AI Compute","Architecture","Workload Optimization","System Design"],[["워크로드 중심 설계","AI workload의 연산량, 메모리 접근, latency와 데이터 이동 특성을 분석하고 목표 workload에 맞는 실행 구조를 설계합니다."],["컴퓨트·메모리·데이터 경로","연산 자원의 활용도를 높이는 동시에 메모리 접근과 데이터 이동의 비효율을 줄이는 방향으로 아키텍처를 구성합니다."],["사업 적용","AI 가속기와 커스텀 실리콘, 서버 및 AI 인프라까지 확장 가능한 기술 기반으로 연결합니다."]]],"hbm":["02 / SOLUTION","HBM SOLUTIONS","HBM 솔루션","HBM을 단순한 메모리 부품이 아니라 AI 컴퓨팅의 성능과 효율을 결정하는 시스템 계층으로 바라봅니다.",["HBM","Memory Bandwidth","Capacity","Data Path","AI Workload"],[["메모리 병목 분석","AI workload에서는 연산 성능이 충분해도 메모리 대역폭, 용량과 접근 효율이 병목이 될 수 있습니다."],["HBM 인지형 아키텍처","HBM 동작을 compute scheduling, data movement와 accelerator utilization에 연결해 실제 AI throughput을 높이는 구조를 설계합니다."],["사업 적용","AI 가속기와 고성능 서버의 메모리 아키텍처, 시스템 통합 및 파트너 협력 영역으로 확장합니다."]]],"accelerator":["03 / SOLUTION","AI ACCELERATOR","AI 가속기","피크 연산량보다 실제 AI workload에서 얼마나 유용한 연산을 지속적으로 수행하는지를 중심으로 가속기를 설계합니다.",["Inference","Acceleration","Utilization","Energy Efficiency"],[["워크로드 우선","throughput, latency, precision, memory bandwidth 등 목표 workload의 요구조건에서 가속기 구조를 출발시킵니다."],["실효성능 최적화","compute utilization과 데이터 이동 효율을 함께 최적화해 실제 서비스 환경의 성능과 에너지 효율을 높이는 방향을 지향합니다."],["ThetaCore 연결","ThetaCore의 연산 최적화 개념을 가속기 실행 경로와 연결하고, HBM 및 데이터 경로까지 통합해 시스템 효율을 높입니다."]]],"server":["04 / SOLUTION","AI SERVER","AI 서버","AI 서버는 GPU 수량만으로 결정되지 않습니다. Compute, HBM, networking, power와 cooling을 하나의 시스템으로 설계해야 합니다.",["GPU / Accelerator","HBM","Networking","Power","Cooling"],[["통합 시스템 설계","가속기, HBM 토폴로지, 네트워크, 스토리지, 전력과 냉각을 하나의 설계 문제로 다룹니다."],["ThetaCore 적용","ThetaCore를 연산 효율화 계층으로 연결해 기존 AI 서버 구성의 활용도를 높이고 시스템 병목을 줄이는 방향을 검토합니다."],["사업 적용","GPU·HBM·서버·소프트웨어·인프라 파트너를 연결하는 AI 서버 구축 및 프로젝트형 사업으로 확장할 수 있습니다."]]],"datacenter":["05 / SOLUTION","AI DATA CENTER","AI 데이터센터","AI 데이터센터는 반도체 기술이 실제 서비스 가치로 전환되는 최종 시스템 계층입니다.",["AI Infrastructure","TCO","Power","Cooling","Operations"],[["인프라 전체 최적화","compute, memory, network, power, cooling, utilization과 물리적 공간을 하나의 시스템 변수로 봅니다."],["TCO와 운영 효율","초기 구축비뿐 아니라 전력, 냉각, 활용도, 유지보수와 교체주기까지 포함해 장기 운영 효율을 설계합니다."],["Certisilicon의 역할","AI 반도체 아키텍처와 HBM, 가속기, 서버 기술을 데이터센터 수준의 구축 전략과 연결하는 시스템 파트너를 지향합니다."]]]},"en":{"semiconductor":["01 / SOLUTION","AI SEMICONDUCTOR","AI Semiconductor Architecture","AI computing starts with architecture. Certisilicon designs compute, memory behavior and data movement as one connected system.",["AI Compute","Architecture","Workload Optimization","System Design"],[["Workload-Centric Design","Analyze compute intensity, memory access, latency and data movement characteristics of each AI workload, then design an execution structure around the target workload."],["Compute, Memory & Data Path","Configure the architecture to improve compute utilization while reducing inefficiencies in memory access and data movement."],["Business Application","Connect the architecture to AI accelerators, custom silicon, AI servers and infrastructure as an extensible technology foundation."]]],"hbm":["02 / SOLUTION","HBM SOLUTIONS","HBM Solutions","Certisilicon views HBM not simply as a memory component, but as a system layer that influences AI computing performance and efficiency.",["HBM","Memory Bandwidth","Capacity","Data Path","AI Workload"],[["Memory Bottleneck Analysis","Even when compute performance is sufficient, memory bandwidth, capacity and access efficiency can become bottlenecks in AI workloads."],["HBM-Aware Architecture","Connect HBM behavior with compute scheduling, data movement and accelerator utilization to improve effective AI throughput."],["Business Application","Extend HBM capabilities into AI accelerator and high-performance server memory architecture, system integration and partner collaboration."]]],"accelerator":["03 / SOLUTION","AI ACCELERATOR","AI Accelerator","AI accelerators should be designed around how much useful computation can be sustained on real AI workloads—not peak compute alone.",["Inference","Acceleration","Utilization","Energy Efficiency"],[["Workload First","Start accelerator architecture from the requirements of the target workload, including throughput, latency, precision and memory bandwidth."],["Effective Performance Optimization","Optimize compute utilization and data movement together to improve real-world service performance and energy efficiency."],["ThetaCore Integration","Connect ThetaCore compute optimization concepts to the accelerator execution path and integrate HBM and data paths to improve system efficiency."]]],"server":["04 / SOLUTION","AI SERVER","AI Server","AI server economics are not determined by GPU count alone. Compute, HBM, networking, power and cooling must be designed as one system.",["GPU / Accelerator","HBM","Networking","Power","Cooling"],[["Integrated System Design","Treat accelerators, HBM topology, networking, storage, power and cooling as one design problem."],["ThetaCore Application","Evaluate ThetaCore as a compute-efficiency layer that can improve utilization of existing AI server configurations and reduce system bottlenecks."],["Business Application","Expand into AI server deployment and project-based business by connecting GPU, HBM, server, software and infrastructure partners."]]],"datacenter":["05 / SOLUTION","AI DATA CENTER","AI Data Center","The AI data center is the final system layer where semiconductor technology is converted into real service value.",["AI Infrastructure","TCO","Power","Cooling","Operations"],[["Infrastructure-Wide Optimization","Treat compute, memory, network, power, cooling, utilization and physical space as interconnected system variables."],["TCO & Operational Efficiency","Design long-term operating efficiency by considering not only initial build cost, but also power, cooling, utilization, maintenance and replacement cycles."],["Certisilicon Role","Position Certisilicon as a system partner connecting AI semiconductor architecture, HBM, accelerators and server technology with data-center deployment strategy."]]]},"zh":{"semiconductor":["01 / SOLUTION","AI SEMICONDUCTOR","AI半导体架构","AI计算始于架构。Certisilicon将计算、内存运行与数据移动作为一个相互连接的系统进行设计。",["AI Compute","Architecture","Workload Optimization","System Design"],[["以工作负载为中心的设计","分析AI工作负载的计算量、内存访问、延迟与数据移动特性，并围绕目标工作负载设计执行架构。"],["计算、内存与数据路径","在提高计算资源利用率的同时，降低内存访问和数据移动中的低效率。"],["业务应用","将架构连接至AI加速器、定制芯片、AI服务器及基础设施，形成可扩展的技术基础。"]]],"hbm":["02 / SOLUTION","HBM SOLUTIONS","HBM解决方案","Certisilicon不将HBM仅视为内存器件，而是将其作为影响AI计算性能与效率的系统层。",["HBM","Memory Bandwidth","Capacity","Data Path","AI Workload"],[["内存瓶颈分析","在AI工作负载中，即使计算性能充足，内存带宽、容量和访问效率也可能成为瓶颈。"],["HBM感知型架构","将HBM运行与计算调度、数据移动及加速器利用率连接起来，提高有效AI吞吐。"],["业务应用","将HBM能力扩展至AI加速器、高性能服务器的内存架构、系统集成及合作伙伴协作。"]]],"accelerator":["03 / SOLUTION","AI ACCELERATOR","AI加速器","AI加速器的设计重点不应只是峰值算力，而应关注真实AI工作负载下可持续执行的有效计算量。",["Inference","Acceleration","Utilization","Energy Efficiency"],[["工作负载优先","从目标工作负载的吞吐量、延迟、精度和内存带宽要求出发设计加速器架构。"],["有效性能优化","协同优化计算资源利用率与数据移动效率，提升实际服务环境中的性能和能效。"],["ThetaCore融合","将ThetaCore计算优化理念连接到加速器执行路径，并整合HBM与数据路径以提升系统效率。"]]],"server":["04 / SOLUTION","AI SERVER","AI服务器","AI服务器的经济性并不只由GPU数量决定。计算、HBM、网络、电力与散热需要作为一个系统进行设计。",["GPU / Accelerator","HBM","Networking","Power","Cooling"],[["一体化系统设计","将加速器、HBM拓扑、网络、存储、电力与散热作为一个整体设计问题。"],["ThetaCore应用","将ThetaCore作为计算效率优化层进行评估，以提升现有AI服务器配置的利用率并减少系统瓶颈。"],["业务应用","连接GPU、HBM、服务器、软件及基础设施合作伙伴，拓展AI服务器部署与项目型业务。"]]],"datacenter":["05 / SOLUTION","AI DATA CENTER","AI数据中心","AI数据中心是将半导体技术转化为实际服务价值的最终系统层。",["AI Infrastructure","TCO","Power","Cooling","Operations"],[["基础设施整体优化","将计算、内存、网络、电力、散热、利用率与物理空间作为相互关联的系统变量。"],["TCO与运营效率","不仅考虑初始建设成本，还综合电力、散热、利用率、维护及更换周期，设计长期运营效率。"],["Certisilicon的角色","将AI半导体架构、HBM、加速器与服务器技术连接至数据中心部署战略，定位为系统合作伙伴。"]]]}};
  const P={"ko": {"focus": "핵심 분야", "prev": "← 이전", "next": "다음 →"}, "en": {"focus": "KEY FOCUS", "prev": "← PREV", "next": "NEXT →"}, "zh": {"focus": "重点领域", "prev": "← 上一个", "next": "下一个 →"}};
  const d=(D[lang]&&D[lang][key])||D.ko[key]; const p=P[lang]||P.ko;
  return {no:d[0],k:d[1],title:d[2],lead:d[3],tags:d[4],body:d[5],focus:p.focus,prev:p.prev,next:p.next};
 }
 function openSolution(key){state.current=keys.indexOf(key);if(state.current<0)state.current=0;renderSolution(state.current);el('solutionModal').classList.add('open');el('solutionModal').setAttribute('aria-hidden','false');document.body.classList.add('modal-open');}
-const solutionBusiness=["AI workload → architecture → accelerator → server → infrastructure", "HBM architecture → data movement → accelerator utilization → AI system", "Workload optimization → effective performance → energy efficiency", "GPU / Accelerator + HBM + Networking + Power + Cooling", "Compute + Memory + Network + Power + Cooling + Operations"];
+const solutionBusiness={ko:["AI workload → 아키텍처 → 가속기 → 서버 → 인프라","HBM 아키텍처 → 데이터 이동 → 가속기 활용도 → AI 시스템","워크로드 최적화 → 실효성능 → 에너지 효율","GPU / 가속기 + HBM + 네트워크 + 전력 + 냉각","컴퓨트 + 메모리 + 네트워크 + 전력 + 냉각 + 운영"],en:["AI workload → architecture → accelerator → server → infrastructure","HBM architecture → data movement → accelerator utilization → AI system","Workload optimization → effective performance → energy efficiency","GPU / Accelerator + HBM + Networking + Power + Cooling","Compute + Memory + Network + Power + Cooling + Operations"],zh:["AI工作负载 → 架构 → 加速器 → 服务器 → 基础设施","HBM架构 → 数据移动 → 加速器利用率 → AI系统","工作负载优化 → 有效性能 → 能效","GPU / 加速器 + HBM + 网络 + 电力 + 散热","计算 + 内存 + 网络 + 电力 + 散热 + 运营"]};
 function renderSolution(i){
  state.current=(i+keys.length)%keys.length; const d=I18N[state.lang]; const row=d.solutions[state.current]; const m=modalContent(state.lang,keys[state.current],row);
  setText('modalNumber',m.no);setText('modalKicker',m.k);setText('modalTitle',m.title);setText('modalLead',m.lead);
  setText('focusAsideLabel',m.focus);el('modalTags').innerHTML=m.tags.map(t=>`<span class="modalTag">${t}</span>`).join('');
- el('modalBody').innerHTML=m.body.map(x=>`<h4>${x[0]}</h4><p>${x[1]}</p>`).join('')+`<div class="solutionBusiness"><b>BUSINESS MODEL</b><p>${solutionBusiness[state.current]}</p></div>`;
+ el('modalBody').innerHTML=m.body.map(x=>`<h4>${x[0]}</h4><p>${x[1]}</p>`).join('')+`<div class="solutionBusiness"><b>${state.lang==='zh'?'业务模式':state.lang==='en'?'BUSINESS MODEL':'사업 모델'}</b><p>${solutionBusiness[state.lang][state.current]}</p></div>`;
  setText('modalPrev',m.prev);setText('modalNext',m.next);setText('modalProgress',`0${state.current+1} / 05`);
 }
 function closeSolution(){el("solutionModal").classList.remove("open");el("solutionModal").setAttribute("aria-hidden","true");document.body.classList.remove("modal-open")}
